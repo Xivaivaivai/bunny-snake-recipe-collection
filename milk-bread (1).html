@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Milk Bread — Bunny &amp; Snake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;margin-bottom:48px}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:900;letter-spacing:-.02em}
+.hero p.lede{font-size:1.15rem;color:var(--soft);max-width:34ch;margin:14px 0 22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column}
+.facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
+.facts span{font-size:.88rem;color:var(--soft)}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--paper);border-radius:22px;padding:22px}
+aside h2{font-size:1.5rem;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .92rem Figtree,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.step button{width:36px;height:36px;border:0;background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;border-radius:999px}
+.step output{min-width:78px;text-align:center;font-weight:600;font-size:.95rem}
+button:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.amt{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+td small{display:block;color:var(--soft);font-size:.82rem;line-height:1.35}
+tr.held td:first-child::after{content:" · add later";color:var(--crust);font-size:.8rem;font-weight:600}
+.pan{margin-top:14px;font-size:.92rem;color:var(--soft)}
+.pan b{color:var(--ink)}
+
+/* steps */
+.phase{margin-bottom:34px}
+.phase h2{font-size:1.9rem;margin-bottom:6px}
+.phase > p{color:var(--soft);margin:0 0 16px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s var(--start,0)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:190px 1fr;gap:20px;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
+.art{background:var(--bg);border-radius:14px;padding:6px;align-self:start}
+.txt h3{font-size:1.25rem;display:flex;gap:10px;align-items:baseline}
+.txt h3::before{content:counter(s);font-size:.95rem;color:var(--paper);background:var(--crust);min-width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+.txt p{margin:8px 0 0}
+.time{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+.tip{margin-top:12px;background:var(--tip);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.tip b{color:var(--crustdk)}
+.done{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--soft);cursor:pointer;width:fit-content}
+.done input{width:18px;height:18px;accent-color:var(--crust)}
+li.is-done{opacity:.55}
+.note-added{font-size:.9rem;color:var(--soft);font-style:italic}
+.reset{border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .9rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;cursor:pointer}
+.pancare{margin-bottom:40px}
+.care{background:var(--paper);border-radius:22px;padding:22px 24px}
+.care h3{font-size:1.15rem;margin-top:14px}
+.care h3:first-of-type{margin-top:0}
+.care p{margin:6px 0 0}
+.care .warn{margin-top:14px;background:var(--tip);border-radius:12px;padding:10px 14px}
+.care .warn b{color:var(--crustdk)}
+footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  aside{position:static}
+}
+@media (max-width:560px){
+  ol.steps li{grid-template-columns:1fr}
+  .art{max-width:260px}
+}
+@media print{
+  body{background:#fff}
+  .ctrl,.done,.reset{display:none}
+  aside{position:static}
+  ol.steps li{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Bunny &amp; Snake Sweet Cottage Baking</div>
+
+  <header class="hero">
+    <div>
+      <h1>Milk Bread</h1>
+      <p class="lede">Soft, pull-apart loaves shaped from rolled spirals, three to a pan.</p>
+      <ul class="facts">
+        <li><b id="f-loaves">2 loaves</b><span>yield</span></li>
+        <li><b>≈ 3½ hr</b><span>start to oven out</span></li>
+        <li><b>325°F</b><span>bake</span></li>
+        <li><b id="f-balls">6 × 170 g</b><span>dough pieces</span></li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 280">
+        <ellipse cx="210" cy="250" rx="190" ry="14" class="pk" opacity=".45"/>
+        <!-- loaf -->
+        <path class="cr" d="M40 238 V150 C40 118 60 96 88 96 C104 96 116 104 124 114 C132 90 152 76 176 76 C200 76 218 90 226 112 C234 96 250 86 270 86 C300 86 318 112 318 142 V238 Z"/>
+        <path class="sw" d="M92 120 C80 124 76 140 88 146 M170 98 C154 104 152 124 168 128 M268 108 C252 112 250 130 264 134"/>
+        <path class="ln" d="M124 114 C120 130 120 200 124 238 M226 112 C230 130 230 200 226 238" opacity=".6"/>
+        <ellipse cx="170" cy="100" rx="26" ry="8" fill="#fff" opacity=".35"/>
+        <!-- slice -->
+        <g transform="translate(300 128) rotate(8)">
+          <path class="cr" d="M10 112 V38 C10 18 26 6 46 6 C64 6 78 18 78 38 V112 Z"/>
+          <path class="dg" d="M18 106 V42 C18 26 30 14 46 14 C62 14 72 26 72 42 V106 Z" stroke-width="1.6"/>
+          <path d="M44 80 C30 78 28 58 44 56 C58 54 60 72 48 72 C40 72 40 64 46 64" fill="none" stroke="var(--crust)" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
+          <g class="fl" opacity=".25"><circle cx="30" cy="36" r="1.6"/><circle cx="60" cy="40" r="1.4"/><circle cx="34" cy="92" r="1.5"/><circle cx="62" cy="88" r="1.3"/><circle cx="54" cy="30" r="1.2"/></g>
+        </g>
+        <!-- bunny ears steam, a small nod -->
+        <path class="dash" d="M150 58 C144 44 156 36 150 22 M200 56 C194 42 206 34 200 20"/>
+      </svg>
+    </div>
+  </header>
+
+    <section class="phase pancare">
+    <h2>Loaf pan care</h2>
+    <p>A little care keeps the pan browning evenly and releasing cleanly.</p>
+    <div class="care">
+      <h3>Before first use</h3>
+      <p>Rinse the new pan with water and dry it thoroughly. Bake it empty at 350°F for 20–30 minutes. If you skip this, your first batch of loaves won't brown well.</p>
+      <h3>After each bake</h3>
+      <p>Wipe the pan clean with a damp, well-wrung paper towel. Try to avoid washing it whenever you can. If it gets messy, like after a chocolate loaf, wash it by hand and dry it thoroughly right away.</p>
+      <div class="warn"><b>Never put the pan in the dishwasher.</b></div>
+    </div>
+  </section>
+
+  <div class="cols">
+    <aside>
+      <h2>Ingredients</h2>
+      <div class="ctrl">
+        <div class="step" role="group" aria-label="Number of loaves">
+          <button type="button" id="minus" aria-label="Fewer loaves">−</button>
+          <output id="loaves" aria-live="polite">2 loaves</output>
+          <button type="button" id="plus" aria-label="More loaves">+</button>
+        </div>
+      </div>
+      <table id="ing"></table>
+    </aside>
+
+    <main>
+      <section class="phase">
+        <h2>Mix</h2>
+        <p>Everything goes in except butter and salt, then a cold rest before the real knead.</p>
+        <ol class="steps" style="--start:0">
+          <li data-id="1">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M26 70 H174 Q170 130 100 130 Q30 130 26 70 Z"/>
+              <path class="dg" d="M48 72 C46 54 62 46 74 54 C80 38 102 38 108 52 C116 40 138 44 138 58 C150 54 158 64 152 72 Z"/>
+              <g class="fl" opacity=".35"><circle cx="70" cy="62" r="2"/><circle cx="96" cy="50" r="1.6"/><circle cx="124" cy="60" r="2"/><circle cx="108" cy="66" r="1.4"/></g>
+              <ellipse cx="162" cy="36" rx="12" ry="15" class="dg"/>
+              <path class="ln" d="M40 30 L64 52 M34 40 L58 58"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Make a rough dough</h3>
+              <p>In the mixer bowl, combine the bread flour, milk, egg, sugar, milk powder, and yeast. Mix on low just until there's no dry flour left. It should look shaggy and rough. Keep the butter and salt aside for now.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="2">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="30" y="14" width="96" height="118" rx="10" class="mt"/>
+              <path class="ln" d="M30 52 H126 M114 24 V42 M114 62 V84"/>
+              <path class="dg" d="M44 118 C42 104 58 98 78 98 C98 98 112 104 110 118 Z"/>
+              <path class="ln" d="M40 118 H114"/>
+              <g class="ln" transform="translate(162 40)"><path d="M0 -18 V18 M-16 -9 L16 9 M-16 9 L16 -9 M-5 -14 L0 -9 L5 -14 M-5 14 L0 9 L5 14"/></g>
+              <circle cx="162" cy="102" r="20" class="dg" style="fill:var(--paper)"/>
+              <path class="ln" d="M162 90 V102 L170 108"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Chill and rest</h3>
+              <p>Cover the bowl and put it in the fridge. The flour hydrates while the dough rests, so gluten starts forming on its own, and the chill keeps the dough from getting too warm during the long knead that follows.</p>
+              <span class="time">30 min, in the fridge</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="3">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M26 74 H174 Q170 132 100 132 Q30 132 26 74 Z"/>
+              <path class="dg" d="M44 76 C50 48 150 48 156 76 Z"/>
+              <rect x="80" y="18" width="20" height="16" rx="3" class="bt" transform="rotate(-12 90 26)"/>
+              <rect x="108" y="30" width="18" height="15" rx="3" class="bt" transform="rotate(10 117 37)"/>
+              <path class="dash" d="M90 38 V50 M117 48 V56"/>
+              <g class="fl" opacity=".55"><circle cx="146" cy="22" r="1.8"/><circle cx="152" cy="32" r="1.5"/><circle cx="142" cy="38" r="1.6"/><circle cx="156" cy="44" r="1.3"/></g>
+              <path class="ln" d="M100 6 V56"/>
+              <path class="ln" d="M100 56 C88 64 88 72 100 72 C112 72 112 64 100 56"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Knead in butter and salt</h3>
+              <p>Mix for about 1 minute to bring the chilled dough together. Add the softened butter and the salt, then knead on medium speed until smooth, glossy, and pulling away from the sides of the bowl.</p>
+              <span class="time">8–10 min kneading</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="4">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <g class="dash"><path d="M100 10 V24 M150 22 L140 34 M50 22 L60 34 M176 70 H162 M24 70 H38"/></g>
+              <path class="dg" d="M44 72 C40 44 70 30 100 34 C134 36 162 50 156 78 C152 106 124 118 96 114 C64 110 48 98 44 72 Z"/>
+              <path d="M70 72 C68 56 86 50 102 52 C122 54 134 64 130 80 C126 94 108 98 94 96 C80 94 72 86 70 72 Z" fill="var(--paper)" opacity=".75" stroke="var(--soft)" stroke-width="1.2"/>
+              <rect x="22" y="58" width="30" height="16" rx="8" class="dg" style="fill:var(--pink)"/>
+              <rect x="148" y="66" width="30" height="16" rx="8" class="dg" style="fill:var(--pink)"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Check for windowpane</h3>
+              <p>Pinch off a small piece and gently stretch it between your fingers. When it stretches thin enough to see light through without tearing, the dough is ready. If it rips, knead another minute or two and test again.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Proof and shape</h2>
+        <p>Each piece gets folded, rested, then rolled into a loose spiral.</p>
+        <ol class="steps" style="--start:4">
+          <li data-id="5">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M26 78 H174 Q170 134 100 134 Q30 134 26 78 Z"/>
+              <path class="dg" d="M34 80 C34 34 166 34 166 80 Z"/>
+              <path class="dash" d="M52 58 C50 36 70 20 100 20 C130 20 150 36 148 58"/>
+              <path class="ln" d="M178 58 V24 M170 32 L178 22 L186 32"/>
+            </svg></div>
+            <div class="txt">
+              <h3>First proof</h3>
+              <p>Round the dough, place it in a lightly greased bowl, and cover. Let it rise somewhere warm (around 78–80°F, like an oven with just the light on) until clearly puffy and close to doubled. It's okay if it hasn't fully doubled. What matters most is not letting it over-proof.</p>
+              <span class="time">About 40 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="6">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="14" y="92" width="78" height="30" rx="6" class="mt"/>
+              <rect x="24" y="100" width="40" height="14" rx="3" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+              <text x="44" y="111" text-anchor="middle" font-size="10" font-family="Figtree,sans-serif" font-weight="600" fill="var(--ink)">168 g</text>
+              <path class="ln" d="M20 92 H86"/>
+              <ellipse cx="53" cy="76" rx="22" ry="16" class="dg"/>
+              <ellipse cx="118" cy="110" rx="15" ry="11" class="dg"/>
+              <ellipse cx="152" cy="110" rx="15" ry="11" class="dg"/>
+              <ellipse cx="184" cy="110" rx="13" ry="10" class="dg"/>
+              <ellipse cx="134" cy="84" rx="15" ry="11" class="dg"/>
+              <ellipse cx="168" cy="84" rx="15" ry="11" class="dg"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Divide and rest</h3>
+              <p>Press out the air gently and divide the dough into <b id="s-balls">6 pieces of 165–170 g</b> each. Round each into a ball, cover, and let them relax.</p>
+              <span class="time">Rest 10 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="7">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="26" y="26" width="84" height="88" rx="8" class="dg"/>
+              <path class="dash" d="M26 55 H110 M26 85 H110"/>
+              <path class="ln" d="M120 40 C140 40 140 60 124 62 M120 104 C140 104 140 80 124 80"/>
+              <path class="ln" d="M126 56 L122 62 L128 66 M126 86 L122 80 L128 76"/>
+              <rect x="150" y="50" width="34" height="40" rx="6" class="dg"/>
+              <path class="ln" d="M150 63 H184 M150 77 H184" opacity=".5"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Flatten and fold in thirds</h3>
+              <p>Flatten each ball into a square about 5 inches across. Fold it in thirds like a letter: one side to the middle, then the other side over the top. Cover and rest again.</p>
+              <div class="tip"><b>Keep it gentle.</b> Pat the ball out with your palm or fingertips instead of pressing it flat, and lay the folds over without stretching them. A few air bubbles are fine to leave in.</div>
+              <span class="time">Rest 10 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="8">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="dg" d="M20 60 H132 C150 60 150 96 132 96 H20 Q12 78 20 60 Z"/>
+              <path class="dash" d="M32 78 H118"/>
+              <circle cx="152" cy="78" r="26" class="dg"/>
+              <path d="M152 78 C158 78 158 70 152 70 C144 70 142 84 152 86 C164 88 168 70 160 62 C150 54 134 64 134 78 C134 94 150 102 164 96" fill="none" stroke="var(--crust)" stroke-width="2.2" stroke-linecap="round"/>
+              <path class="ln" d="M160 36 C176 36 184 50 182 62 M176 56 L182 64 L188 56"/>
+              <rect x="30" y="24" width="84" height="12" rx="6" class="mt"/>
+              <path class="ln" d="M22 30 H30 M114 30 H122"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Roll out and roll up</h3>
+              <p>Turn each folded piece seam side up. Roll it out along its length into a long strip, about 10–12 inches, then roll it up from the short end into a snug spiral. Pinch the seam lightly. Set the roll seam side down, but don't tuck the seam all the way under or press the roll down onto it.</p>
+              <div class="tip"><b>Keep it gentle.</b> Don't press hard with the rolling pin or squeeze the roll all the way down. Leaving a little air in the dough gives you a taller, softer loaf.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="9">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M18 50 L30 124 H170 L182 50"/>
+              <path class="ln" d="M12 50 H188"/>
+              <g>
+                <ellipse cx="58" cy="104" rx="24" ry="18" class="dg"/>
+                <ellipse cx="100" cy="104" rx="24" ry="18" class="dg"/>
+                <ellipse cx="142" cy="104" rx="24" ry="18" class="dg"/>
+                <path class="sw" transform="rotate(-90 58 104)" d="M58 104 C62 104 62 98 58 98 C52 98 50 108 58 110 C68 112 70 96 60 92"/>
+                <path class="sw" transform="rotate(-90 100 104)" d="M100 104 C104 104 104 98 100 98 C94 98 92 108 100 110 C110 112 112 96 102 92"/>
+                <path class="sw" transform="rotate(-90 142 104)" d="M142 104 C146 104 146 98 142 98 C136 98 134 108 142 110 C152 112 154 96 144 92"/>
+              </g>
+            </svg></div>
+            <div class="txt">
+              <h3>Place in the pans</h3>
+              <p>Set 3 rolls in each greased loaf pan, seam side down, spirals all facing the same long side of the pan. Leave a little space between them to rise into.</p>
+              <span class="pan-count time" id="s-pans">3 rolls per pan, 2 pans</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Bake</h2>
+        <ol class="steps" style="--start:9">
+          <li data-id="10">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M18 56 L30 128 H170 L182 56"/>
+              <path class="ln" d="M12 56 H188"/>
+              <path class="dg" d="M24 96 C24 68 40 56 58 56 C70 56 78 62 80 70 C84 58 94 52 100 52 C108 52 118 58 120 70 C122 62 132 56 142 56 C160 56 176 68 176 96 L170 128 H30 Z"/>
+              <path class="dash" d="M10 62 H190" opacity="0"/>
+              <path class="ln" d="M190 70 V40 M184 46 L190 38 L196 46"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Final proof</h3>
+              <p>Cover and let rise in a warm spot until the dough fills about 80% of the pan. Timing depends on how warm your kitchen is.</p>
+              <span class="time">Usually 60–80 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="11">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="14" y="16" width="172" height="116" rx="12" class="mt"/>
+              <rect x="28" y="34" width="144" height="84" rx="6" fill="var(--paper)" stroke="var(--ink)" stroke-width="2"/>
+              <path class="ln" d="M42 110 L48 80 H152 L158 110 Z" style="fill:var(--steel)"/>
+              <path class="cr" d="M46 82 C46 60 58 52 70 52 C80 52 86 58 88 64 C92 54 98 48 104 48 C112 48 118 54 120 64 C122 56 128 52 134 52 C148 52 156 62 154 82 Z"/>
+              <path class="sw" d="M68 62 C60 64 60 72 68 72 M104 56 C96 58 96 66 104 66 M134 60 C126 62 126 70 134 70"/>
+              <path class="dash" d="M60 44 C56 38 64 34 60 28 M100 40 C96 34 104 30 100 24 M140 44 C136 38 144 34 140 28" style="stroke:var(--crust)"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Bake</h3>
+              <p>Bake at 325°F until golden and the center reaches 180°F on a thermometer. Pulling it at 180°F keeps the crumb soft and tender.</p>
+              <span class="time">23–25 min at 325°F</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="12">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="ln" d="M16 120 H184 M30 120 V130 M170 120 V130 M16 110 H184" />
+              <path class="cr" d="M44 110 V70 C44 54 54 44 68 44 C78 44 84 50 88 56 C92 44 100 38 108 38 C118 38 126 46 128 56 C132 50 138 46 146 46 C160 46 166 58 166 72 V110 Z"/>
+              <path class="sw" d="M66 56 C58 58 58 68 66 68 M108 50 C100 52 100 62 108 62 M146 58 C138 60 138 70 146 70"/>
+              <ellipse cx="108" cy="46" rx="14" ry="4" fill="#fff" opacity=".35"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Cool, slice, and pack</h3>
+              <p>Tap the pans firmly on the counter once to release steam, which helps keep the sides from caving in. Turn the loaves out right away onto a rack. They'll come out lying on their sides, so gently stand them upright right away. Let them cool until the crust is about skin temperature and still feels just slightly warm to the touch, then slice and pack.</p>
+              <span class="time">Cool until barely warm</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+
+      <footer>
+        <span>Bunny &amp; Snake Sweet Cottage Baking</span>
+        <button type="button" class="reset" id="reset">Clear checkmarks</button>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  // base amounts are for 2 loaves; scales in steps of 2
+  var ING = [
+    {name:"Bread flour", g:500},
+    {name:"Whole milk", g:330, note:"Cold"},
+    {name:"Egg", egg:1},
+    {name:"Sugar", g:60},
+    {name:"Milk powder", g:10, note:"Optional"},
+    {name:"Instant yeast", tsp:2, note:"Sweet-dough yeast"},
+    {name:"Unsalted butter, softened", g:50, held:true},
+    {name:"Salt", g:9, held:true}
+  ];
+  var loaves = 2;
+  try{ var s = JSON.parse(localStorage.getItem("mb-settings")||"{}"); if(s.loaves && s.loaves%2===0) loaves = s.loaves; }catch(e){}
+
+  function render(){
+    var k = loaves/2, rows = "";
+    ING.forEach(function(i){
+      var amt = i.egg ? (i.egg*k)+" large" : i.tsp ? (i.tsp*k)+" tsp" : (Math.round(i.g*k*10)/10)+" g";
+      rows += '<tr'+(i.held?' class="held"':'')+'><td>'+i.name+(i.note?'<small>'+i.note+'</small>':'')+'</td><td class="amt">'+amt+'</td></tr>';
+    });
+    document.getElementById("ing").innerHTML = rows;
+    var L = loaves+" loaves", balls = loaves*3;
+    document.getElementById("loaves").textContent = L;
+    document.getElementById("f-loaves").textContent = L;
+    document.getElementById("f-balls").textContent = balls+" × 170 g";
+    document.getElementById("s-balls").textContent = balls+" pieces of 165–170 g";
+    document.getElementById("s-pans").textContent = "3 rolls per pan, "+loaves+" pans";
+    document.getElementById("minus").disabled = loaves<=2;
+    document.getElementById("plus").disabled = loaves>=6;
+    try{ localStorage.setItem("mb-settings", JSON.stringify({loaves:loaves})); }catch(e){}
+  }
+  document.getElementById("minus").onclick = function(){ if(loaves>2){loaves-=2;render();} };
+  document.getElementById("plus").onclick = function(){ if(loaves<6){loaves+=2;render();} };
+
+  // step checkmarks
+  var done = {};
+  try{ done = JSON.parse(localStorage.getItem("mb-done")||"{}"); }catch(e){ done = {}; }
+  var items = document.querySelectorAll("ol.steps li");
+  items.forEach(function(li){
+    var cb = li.querySelector("input"), id = li.dataset.id;
+    cb.checked = !!done[id]; li.classList.toggle("is-done", cb.checked);
+    cb.addEventListener("change", function(){
+      done[id] = cb.checked; li.classList.toggle("is-done", cb.checked);
+      try{ localStorage.setItem("mb-done", JSON.stringify(done)); }catch(e){}
+    });
+  });
+  document.getElementById("reset").onclick = function(){
+    done = {}; items.forEach(function(li){ li.querySelector("input").checked=false; li.classList.remove("is-done"); });
+    try{ localStorage.removeItem("mb-done"); }catch(e){}
+  };
+  render();
+})();
+</script>
+</body>
+</html>
