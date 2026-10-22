@@ -65,6 +65,10 @@ svg{display:block;max-width:100%;height:auto}
 .tag{display:inline-block;margin-top:10px;font-size:.82rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
 
 footer{margin-top:48px;color:var(--soft);font-size:.9rem}
+footer a,.topnav a{color:inherit}
+.topnav{display:flex;justify-content:flex-end;font-size:.95rem;font-weight:600;color:var(--soft)}
+.topnav a{text-decoration:none}
+.topnav a:hover{color:var(--crustdk)}
 
 @media (max-width:820px){
   .hero{grid-template-columns:1fr}
@@ -77,6 +81,7 @@ footer{margin-top:48px;color:var(--soft);font-size:.9rem}
 </head>
 <body>
 <div class="wrap">
+  <nav class="topnav"><a href="about.html">About</a></nav>
 
   <header class="hero">
     <div>
@@ -125,7 +130,7 @@ footer{margin-top:48px;color:var(--soft);font-size:.9rem}
 
       <!-- To add a recipe: copy from <li> to </li>, paste below, and change the link, name, and description. -->
       <li>
-        <a href="recipes/japanese-milk-bread.html">
+        <a href="recipes/milk-bread.html">
           <div class="art" aria-hidden="true"><svg viewBox="0 0 120 90">
             <path class="cr" d="M14 80 V48 C14 36 22 28 32 28 C38 28 42 30 46 34 C50 24 56 20 64 20 C72 20 78 24 82 32 C86 28 90 26 96 26 C104 26 108 34 108 44 V80 Z"/>
             <path class="sw" d="M30 40 C26 42 26 48 30 50 M62 30 C58 32 58 38 62 40 M92 36 C88 38 88 44 92 46"/>
@@ -141,7 +146,7 @@ footer{margin-top:48px;color:var(--soft);font-size:.9rem}
     </ul>
   </section>
 
-  <footer>Bunny &amp; Snake Sweet Cottage Baking</footer>
+  <footer>Bunny &amp; Snake Sweet Cottage Baking · <a href="about.html">About</a></footer>
 </div>
 </body>
 </html>
