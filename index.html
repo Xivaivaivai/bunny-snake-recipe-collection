@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bunny &amp; Snake Sweet Cottage Baking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA; --leaf:#9DBF8E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22; --leaf:#7FA270;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22; --leaf:#7FA270;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.lf{fill:var(--leaf);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.wh{fill:var(--paper);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;margin:20px 0 56px}
+.hero h1{font-size:clamp(2.8rem,8vw,5rem);font-weight:900;letter-spacing:-.02em}
+.hero h1 small{display:block;font-size:.42em;font-weight:700;color:var(--soft);letter-spacing:0;margin-top:10px}
+.hero p.lede{font-size:1.12rem;color:var(--soft);max-width:38ch;margin:18px 0 0}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+
+/* recipe shelf */
+.shelf{margin-bottom:40px}
+.shelf h2{font-size:1.9rem;margin-bottom:6px}
+.shelf > p{color:var(--soft);margin:0 0 16px}
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.list a{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;background:var(--paper);border-radius:22px;padding:16px;color:inherit;text-decoration:none;border:2px solid transparent}
+.list a:hover{border-color:var(--crust)}
+.list a:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+.art{background:var(--bg);border-radius:14px;padding:6px}
+.list h3{font-size:1.3rem}
+.list p{margin:4px 0 0;font-size:.95rem;color:var(--soft);line-height:1.45}
+.tag{display:inline-block;margin-top:10px;font-size:.82rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+
+footer{margin-top:48px;color:var(--soft);font-size:.9rem}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .hero-art{max-width:480px}
+}
+@media (max-width:420px){
+  .list a{grid-template-columns:88px 1fr;gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div>
+      <h1>Bunny &amp; Snake<small>Sweet Cottage Baking</small></h1>
+      <p class="lede">Bunny doesn’t invent recipes from scratch. Bunny collects them, tests them in a home kitchen, adjusts what doesn’t work, and shares the versions worth keeping.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 280">
+        <ellipse cx="210" cy="252" rx="190" ry="14" class="pk" opacity=".45"/>
+        <!-- loaf in the middle -->
+        <path class="cr" d="M140 244 V176 C140 152 156 136 176 136 C188 136 196 142 202 150 C208 132 222 122 240 122 C262 122 276 140 276 164 V244 Z"/>
+        <path class="sw" d="M172 156 C160 160 158 174 170 178 M238 142 C224 148 222 164 236 168"/>
+        <path class="ln" d="M202 150 C198 170 198 220 202 244" opacity=".6"/>
+        <path class="dash" d="M196 112 C190 98 202 90 196 76 M232 104 C226 90 238 82 232 68"/>
+        <!-- bunny, left -->
+        <g>
+          <path class="wh" d="M66 92 C58 58 62 30 72 30 C82 30 86 58 82 94 Z"/>
+          <path class="wh" d="M92 94 C94 60 104 36 114 40 C124 44 116 72 104 98 Z"/>
+          <path class="pk" d="M70 86 C66 62 68 42 72 42 C76 42 78 62 77 88 Z"/>
+          <path class="pk" d="M97 92 C100 66 106 50 111 52 C115 55 110 74 101 96 Z"/>
+          <path class="wh" d="M40 244 C30 210 34 168 54 146 C46 132 50 104 76 96 C100 90 118 108 114 132 C132 148 140 196 128 244 Z"/>
+          <circle cx="72" cy="120" r="3.6" class="fl"/>
+          <circle cx="98" cy="118" r="3.6" class="fl"/>
+          <path class="ln" d="M80 130 C82 134 88 134 90 130"/>
+          <ellipse cx="64" cy="132" rx="8" ry="5" class="pk" opacity=".6"/>
+          <ellipse cx="106" cy="130" rx="8" ry="5" class="pk" opacity=".6"/>
+          <path class="ln" d="M118 196 C130 190 140 192 144 200"/>
+        </g>
+        <!-- snake, right, coiled -->
+        <g>
+          <path class="lf" d="M282 244 C276 226 292 212 318 212 C346 212 372 220 376 234 C380 248 356 250 330 248 C306 246 286 252 282 244 Z"/>
+          <path class="lf" d="M302 214 C296 198 310 186 332 186 C354 186 368 196 366 208 C364 220 340 218 322 216 C310 215 304 220 302 214 Z"/>
+          <path class="lf" d="M330 188 C328 168 330 148 344 140 C358 132 378 138 380 152 C382 166 368 172 356 168 C350 176 352 186 350 192 Z"/>
+          <circle cx="366" cy="150" r="3.4" class="fl"/>
+          <path class="ln" d="M380 158 L394 160 M394 160 L400 154 M394 160 L400 166"/>
+          <path class="ln" d="M310 232 C320 236 336 236 350 232 M318 204 C326 206 340 206 350 202" opacity=".45"/>
+        </g>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ===== BREADS ===== -->
+  <section class="shelf">
+    <h2>Breads</h2>
+    <p>Loaves and rolls, each baked and adjusted until it works.</p>
+    <ul class="list">
+
+      <!-- To add a recipe: copy from <li> to </li>, paste below, and change the link, name, and description. -->
+      <li>
+        <a href="recipes/japanese-milk-bread.html">
+          <div class="art" aria-hidden="true"><svg viewBox="0 0 120 90">
+            <path class="cr" d="M14 80 V48 C14 36 22 28 32 28 C38 28 42 30 46 34 C50 24 56 20 64 20 C72 20 78 24 82 32 C86 28 90 26 96 26 C104 26 108 34 108 44 V80 Z"/>
+            <path class="sw" d="M30 40 C26 42 26 48 30 50 M62 30 C58 32 58 38 62 40 M92 36 C88 38 88 44 92 46"/>
+          </svg></div>
+          <div>
+            <h3>Milk Bread</h3>
+            <p>Soft, pull-apart loaves shaped from rolled spirals.</p>
+            <span class="tag">≈ 3½ hr</span>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+  <footer>Bunny &amp; Snake Sweet Cottage Baking</footer>
+</div>
+</body>
+</html>
