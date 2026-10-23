@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Red Bean Buns — Bunny &amp; Snake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA; --bean:#7A3A2E; --beanlt:#A8594A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22; --bean:#8E463A; --beanlt:#B86A5A;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22; --bean:#8E463A; --beanlt:#B86A5A;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;margin-bottom:48px}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:900;letter-spacing:-.02em}
+.hero p.lede{font-size:1.15rem;color:var(--soft);max-width:34ch;margin:14px 0 22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column}
+.facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
+.facts span{font-size:.88rem;color:var(--soft)}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+
+/* layout */
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--paper);border-radius:22px;padding:22px}
+aside h2{font-size:1.5rem;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .92rem Figtree,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.step button{width:36px;height:36px;border:0;background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;border-radius:999px}
+.step output{min-width:78px;text-align:center;font-weight:600;font-size:.95rem}
+button:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.amt{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+td small{display:block;color:var(--soft);font-size:.82rem;line-height:1.35}
+tr.held td:first-child::after{content:" · add later";color:var(--crust);font-size:.8rem;font-weight:600}
+.pan{margin-top:14px;font-size:.92rem;color:var(--soft)}
+.pan b{color:var(--ink)}
+
+/* steps */
+.phase{margin-bottom:34px}
+.phase h2{font-size:1.9rem;margin-bottom:6px}
+.phase > p{color:var(--soft);margin:0 0 16px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s var(--start,0)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:190px 1fr;gap:20px;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
+.art{background:var(--bg);border-radius:14px;padding:6px;align-self:start}
+.txt h3{font-size:1.25rem;display:flex;gap:10px;align-items:baseline}
+.txt h3::before{content:counter(s);font-size:.95rem;color:var(--paper);background:var(--crust);min-width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+.txt p{margin:8px 0 0}
+.time{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+.tip{margin-top:12px;background:var(--tip);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.tip b{color:var(--crustdk)}
+.done{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--soft);cursor:pointer;width:fit-content}
+.done input{width:18px;height:18px;accent-color:var(--crust)}
+li.is-done{opacity:.55}
+.note-added{font-size:.9rem;color:var(--soft);font-style:italic}
+.reset{border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .9rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;cursor:pointer}
+.pancare{margin-bottom:40px}
+.care{background:var(--paper);border-radius:22px;padding:22px 24px}
+.care h3{font-size:1.15rem;margin-top:14px}
+.care h3:first-of-type{margin-top:0}
+.care p{margin:6px 0 0}
+.care .warn{margin-top:14px;background:var(--tip);border-radius:12px;padding:10px 14px}
+.care .warn b{color:var(--crustdk)}
+footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  aside{position:static}
+}
+@media (max-width:560px){
+  ol.steps li{grid-template-columns:1fr}
+  .art{max-width:260px}
+}
+@media print{
+  body{background:#fff}
+  .ctrl,.done,.reset{display:none}
+  aside{position:static}
+  ol.steps li{break-inside:avoid}
+}
+.bn{fill:var(--bean);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bd{fill:var(--beanlt)}
+.wh{stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.brand a,.txt a,aside a{color:inherit}
+.brand a{text-decoration:none}
+.brand a:hover{color:var(--crustdk)}
+aside h3{font-size:1.1rem;margin:18px 0 4px}
+aside h3:first-of-type{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="../">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</div>
+
+  <header class="hero">
+    <div>
+      <h1>Red Bean Buns</h1>
+      <p class="lede">Milk bread dough wrapped around a generous ball of chunky red bean paste, baked until soft and golden.</p>
+      <ul class="facts">
+        <li><b id="f-buns">14 buns</b><span>yield</span></li>
+        <li><b>65–70 g + 45 g</b><span>dough + filling</span></li>
+        <li><b>≈ 3 hr</b><span>start to oven out</span></li>
+        <li><b>360°F</b><span>bake 16–18 min</span></li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="20 80 390 186">
+        <ellipse cx="210" cy="246" rx="190" ry="14" class="pk" opacity=".45"/>
+        <!-- whole bun -->
+        <path class="cr" d="M40 236 C34 200 52 150 120 146 C188 150 206 200 200 236 Z"/>
+        <path d="M70 176 C84 160 104 156 118 158" fill="none" stroke="var(--butter)" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+        <g class="fl"><ellipse cx="110" cy="164" rx="3.2" ry="1.8" transform="rotate(-20 110 164)"/><ellipse cx="126" cy="160" rx="3.2" ry="1.8" transform="rotate(15 126 160)"/><ellipse cx="118" cy="174" rx="3.2" ry="1.8" transform="rotate(40 118 174)"/><ellipse cx="134" cy="172" rx="3.2" ry="1.8" transform="rotate(-35 134 172)"/><ellipse cx="102" cy="176" rx="3.2" ry="1.8" transform="rotate(10 102 176)"/></g>
+        <path class="dash" d="M106 132 C100 118 112 110 106 96 M136 128 C130 114 142 106 136 92"/>
+        <!-- cut bun -->
+        <path class="cr" d="M228 236 C222 206 236 168 296 164 C356 168 370 206 364 236 Z"/>
+        <path class="dg" d="M236 236 C232 212 246 180 296 178 C346 180 360 212 356 236 Z"/>
+        <path class="bn" d="M256 236 C254 214 270 196 296 196 C322 196 338 214 336 236 Z"/>
+        <g class="bd"><ellipse cx="280" cy="216" rx="5" ry="3.4"/><ellipse cx="304" cy="210" rx="5" ry="3.4"/><ellipse cx="318" cy="224" rx="5" ry="3.4"/><ellipse cx="292" cy="228" rx="5" ry="3.4"/><ellipse cx="270" cy="230" rx="4" ry="3"/></g>
+        <!-- a crumb of bean, a small nod -->
+        <ellipse cx="384" cy="234" rx="6" ry="4" class="bn"/>
+      </svg>
+    </div>
+  </header>
+
+  <div class="cols">
+    <aside>
+      <h2>Ingredients</h2>
+      <div class="ctrl">
+        <div class="step" role="group" aria-label="Number of buns">
+          <button type="button" id="minus" aria-label="Fewer buns">−</button>
+          <output id="buns" aria-live="polite">14 buns</output>
+          <button type="button" id="plus" aria-label="More buns">+</button>
+        </div>
+      </div>
+      <h3>Dough</h3>
+      <table id="ing"></table>
+      <h3>Filling</h3>
+      <table>
+        <tr><td>Red bean paste<small><a href="https://www.yami.com/us/en/p/red-bean-paste-tsubu-an-500g/1148015731">Shirakiku, 500 g pack</a>. Coarse paste gives more texture than fine, but either works, so go with what you like. <span id="packs"></span></small></td><td class="amt" id="fill"></td></tr>
+      </table>
+      <h3>Topping</h3>
+      <table>
+        <tr><td>Water<small>For misting the tops before baking</small></td><td class="amt">a spritz</td></tr>
+        <tr><td>Black or white sesame<small>Optional, just for decoration</small></td><td class="amt">a pinch</td></tr>
+        <tr><td>Melted butter<small>Optional, brushed on after baking for a shiny finish</small></td><td class="amt">a little</td></tr>
+      </table>
+      <p class="pan">At 14 buns, this is one full batch of <a href="milk-bread.html">milk bread</a> dough, cut into pieces of <b>65–70&nbsp;g</b>. One batch usually makes 13–14.</p>
+    </aside>
+
+    <main>
+      <section class="phase">
+        <h2>Make the dough</h2>
+        <p>The dough is exactly the milk bread dough, start to finish.</p>
+        <ol class="steps" style="--start:0">
+          <li data-id="1">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M52 70 C56 48 80 40 100 40 C120 40 144 48 148 70 Z"/>
+              <path class="ln" d="M80 56 C86 52 94 52 98 56 M108 52 C114 48 122 50 126 56" opacity=".5"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Mix and knead</h3>
+              <p>Follow steps 1–4 of the <a href="milk-bread.html">milk bread recipe</a>: rough dough, 30-minute chill, knead in the butter and salt, then check for a windowpane.</p>
+              <span class="time">About 50 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="2">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M40 70 C42 34 72 22 100 22 C128 22 158 34 160 70 Z"/>
+              <path class="dash" d="M28 40 C22 30 32 24 26 14 M176 40 C170 30 180 24 174 14"/>
+            </svg></div>
+            <div class="txt">
+              <h3>First proof</h3>
+              <p>Round the dough, place it in a lightly greased bowl, cover, and let it rise somewhere warm (around 78–80°F) until clearly puffy and close to doubled. As with the loaves, don’t let it over-proof.</p>
+              <span class="time">About 40 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Fill and shape</h2>
+        <p>Portion the filling while the dough proofs, so shaping goes quickly.</p>
+        <ol class="steps" style="--start:2">
+          <li data-id="3">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <ellipse cx="100" cy="108" rx="84" ry="18" class="mt"/>
+              <circle cx="58" cy="90" r="18" class="bn"/><circle cx="100" cy="86" r="18" class="bn"/><circle cx="142" cy="90" r="18" class="bn"/>
+              <g class="bd"><ellipse cx="52" cy="86" rx="3.6" ry="2.4"/><ellipse cx="64" cy="94" rx="3.6" ry="2.4"/><ellipse cx="96" cy="80" rx="3.6" ry="2.4"/><ellipse cx="106" cy="90" rx="3.6" ry="2.4"/><ellipse cx="138" cy="86" rx="3.6" ry="2.4"/><ellipse cx="148" cy="94" rx="3.6" ry="2.4"/></g>
+              <text x="100" y="40" text-anchor="middle" font-size="13" font-family="Figtree,sans-serif" font-weight="600" fill="var(--ink)">45 g each</text>
+            </svg></div>
+            <div class="txt">
+              <h3>Portion the filling</h3>
+              <p>Scoop the red bean paste into <b id="s-fill">14 balls of 45 g</b> and roll each one smooth. Set them on a plate and chill until you’re ready to shape. If there’s paste left in the pack, roll it into 45 g balls too and freeze them, so they’re ready to go next time.</p>
+              <div class="tip"><b>Chilled filling wraps cleanly.</b> Cold, firm balls are much easier to enclose than soft paste straight from the pack.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="4">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <circle cx="40" cy="80" r="20" class="dg"/><circle cx="85" cy="80" r="20" class="dg"/><circle cx="130" cy="80" r="20" class="dg"/><circle cx="170" cy="86" r="14" class="dg" opacity=".5"/>
+              <text x="85" y="122" text-anchor="middle" font-size="13" font-family="Figtree,sans-serif" font-weight="600" fill="var(--ink)">65–70 g each</text>
+            </svg></div>
+            <div class="txt">
+              <h3>Divide and rest</h3>
+              <p>Press out the air gently and divide the dough into <b id="s-buns">14 pieces of 65–70 g</b>. Round each into a ball, cover, and let them relax.</p>
+              <span class="time">Rest 10 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="5">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <ellipse cx="100" cy="82" rx="76" ry="40" class="dg"/>
+              <ellipse cx="100" cy="82" rx="46" ry="24" fill="none" stroke="var(--soft)" stroke-width="1.6" stroke-dasharray="4 5"/>
+              <circle cx="100" cy="78" r="18" class="bn"/>
+              <g class="bd"><ellipse cx="94" cy="74" rx="3.6" ry="2.4"/><ellipse cx="106" cy="82" rx="3.6" ry="2.4"/></g>
+            </svg></div>
+            <div class="txt">
+              <h3>Flatten and fill</h3>
+              <p>Pat each ball out gently into a round just a little larger than the filling ball. Don’t flatten it too much. Keep the center a little thicker than the edges, then set a ball of filling in the middle.</p>
+              <div class="tip"><b>Thick middle, thin edges.</b> At 45 g of filling to 65 g of dough, the base needs to be sturdy so the paste doesn’t push through the bottom, while thin edges keep the seam from turning doughy.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="6">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <!-- dough with pinched top, sitting in the palm -->
+              <path class="dg" d="M56 104 C50 76 68 46 100 44 C132 46 150 76 144 104 Z"/>
+              <path class="ln" d="M88 50 L100 62 L112 50 M100 62 L100 46 M82 56 L100 62 M118 56 L100 62"/>
+              <!-- palm and wrist -->
+              <path class="wh" style="fill:var(--pink)" d="M40 98 C40 118 66 128 100 128 C124 128 142 122 152 112 L186 124 L192 108 L156 94 C150 100 140 104 130 104 L70 104 C56 104 46 100 40 98 Z"/>
+              <!-- fingers curling up the left side -->
+              <path class="wh" style="fill:var(--pink)" d="M40 98 C30 94 26 84 32 78 C38 74 46 80 52 86 Z"/>
+              <path class="wh" style="fill:var(--pink)" d="M44 84 C34 78 32 66 40 62 C46 60 52 68 56 76 Z"/>
+              <path class="wh" style="fill:var(--pink)" d="M50 70 C44 62 44 52 52 50 C58 50 62 58 62 66 Z"/>
+              <!-- thumb pushing up the right side -->
+              <path class="wh" style="fill:var(--pink)" d="M146 100 C156 90 162 76 158 64 C156 58 148 58 146 64 C144 74 140 84 134 92 Z"/>
+              <path class="ln" d="M74 116 C92 120 114 120 132 114" opacity=".35"/>
+              <!-- push arrow -->
+              <path class="ln" d="M168 74 C166 62 160 52 150 46 M150 46 L153 55 M150 46 L160 47" opacity=".7"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Seal</h3>
+              <p>Hold the bun in one hand. Using the web between your thumb and index finger, push the dough up around the filling, turning the bun as you go, until the edges meet at the top. Pinch them together firmly. Turn the bun seam side down and cup it gently to round it. Place on a parchment-lined tray, about 2 inches apart.</p>
+              <div class="tip"><b>Pinch it well.</b> A seam that isn’t fully sealed tends to pop open in the oven and leak filling.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Bake</h2>
+        <ol class="steps" style="--start:6">
+          <li data-id="7">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="14" y="104" width="172" height="12" rx="4" class="mt"/>
+              <path class="dg" d="M22 104 C18 84 30 66 56 64 C82 66 94 84 90 104 Z"/>
+              <path class="dg" d="M110 104 C106 84 118 66 144 64 C170 66 182 84 178 104 Z"/>
+              <path class="dash" d="M56 52 C50 42 62 36 56 26 M144 52 C138 42 150 36 144 26"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Final proof</h3>
+              <p>Cover loosely and let the buns rise in a warm spot until puffy and about 1½ times their size. They should spring back slowly when pressed lightly. Preheat the oven to 360°F toward the end.</p>
+              <span class="time">Usually 40–50 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="8">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="14" y="104" width="172" height="12" rx="4" class="mt"/>
+              <path class="cr" d="M22 104 C18 84 30 66 56 64 C82 66 94 84 90 104 Z"/>
+              <path class="cr" d="M110 104 C106 84 118 66 144 64 C170 66 182 84 178 104 Z"/>
+              <g class="fl"><ellipse cx="52" cy="72" rx="2.6" ry="1.5"/><ellipse cx="60" cy="76" rx="2.6" ry="1.5" transform="rotate(30 60 76)"/><ellipse cx="140" cy="72" rx="2.6" ry="1.5"/><ellipse cx="148" cy="76" rx="2.6" ry="1.5" transform="rotate(-30 148 76)"/></g>
+              <path d="M34 82 C40 74 48 70 54 70 M122 82 C128 74 136 70 142 70" fill="none" stroke="var(--butter)" stroke-width="3.5" stroke-linecap="round" opacity=".8"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Mist and bake</h3>
+              <p>Lightly mist the tops with water. If you like, sprinkle a few sesame seeds in the center for decoration. Bake at 360°F until golden.</p>
+              <div class="tip"><b>Use a light-colored baking sheet.</b> A dark pan browns the bottoms too fast. If your oven runs hot from the bottom (common in flat-bottom ovens with a strong lower element), stack two baking sheets to keep the bottoms from overbrowning.</div>
+              <span class="time">16–18 min at 360°F</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="9">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="ln" d="M20 108 H180 M40 108 V120 M160 108 V120 M60 102 V108 M100 102 V108 M140 102 V108"/>
+              <path class="ln" d="M20 102 H180"/>
+              <path class="cr" d="M60 102 C56 80 70 60 100 58 C130 60 144 80 140 102 Z"/>
+              <path class="dash" d="M86 46 C80 36 92 30 86 20 M114 46 C108 36 120 30 114 20"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Cool and pack</h3>
+              <p>Move the buns to a rack right away. If you like a shiny finish, brush the tops with melted butter while they’re hot; skip it for a matte crust. Let them cool until just barely warm before packing, so steam doesn’t soften the tops.</p>
+              <span class="time">Cool until barely warm</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        <span><a href="../" style="color:inherit">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</span>
+        <button type="button" class="reset" id="reset">Clear checkmarks</button>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  // base amounts are one milk bread batch = 14 buns; scales in steps of 7
+  var BASE = 14;
+  var ING = [
+    {name:"Bread flour", g:500},
+    {name:"Whole milk", g:330, note:"Cold"},
+    {name:"Egg", egg:1},
+    {name:"Sugar", g:60},
+    {name:"Milk powder", g:10, note:"Optional"},
+    {name:"Instant yeast", tsp:2, note:"Sweet-dough yeast"},
+    {name:"Unsalted butter, softened", g:50, held:true},
+    {name:"Salt", g:9, held:true}
+  ];
+  var buns = BASE;
+  try{ var st = JSON.parse(localStorage.getItem("rb-settings")||"{}"); if(st.buns>=7 && st.buns<=56 && st.buns%7===0) buns = st.buns; }catch(e){}
+
+  function quarter(x){ var q = Math.round(x*4)/4, w = Math.floor(q), f = q-w;
+    var fr = f===0.25?"¼":f===0.5?"½":f===0.75?"¾":"";
+    return (w>0?w:"")+fr || "0"; }
+
+  function render(){
+    var k = buns/BASE, rows = "";
+    ING.forEach(function(i){
+      var amt;
+      if(i.egg){ amt = quarter(i.egg*k)+" large"; }
+      else if(i.tsp){ amt = quarter(i.tsp*k)+" tsp"; }
+      else { amt = Math.round(i.g*k)+" g"; }
+      var note = i.note || "";
+      rows += '<tr'+(i.held?' class="held"':'')+'><td>'+i.name+(note?'<small>'+note+'</small>':'')+'</td><td class="amt">'+amt+'</td></tr>';
+    });
+    document.getElementById("ing").innerHTML = rows;
+    var fill = buns*45, packs = fill/500;
+    document.getElementById("fill").textContent = fill+" g";
+    document.getElementById("packs").textContent = "About "+(Math.round(packs*10)/10)+" packs; one pack fills 11 buns.";
+    var B = buns+" buns";
+    document.getElementById("buns").textContent = B;
+    document.getElementById("f-buns").textContent = B;
+    document.getElementById("s-fill").textContent = buns+" balls of 45 g";
+    document.getElementById("s-buns").textContent = buns+" pieces of 65–70 g";
+    document.getElementById("minus").disabled = buns<=7;
+    document.getElementById("plus").disabled = buns>=56;
+    try{ localStorage.setItem("rb-settings", JSON.stringify({buns:buns})); }catch(e){}
+  }
+  document.getElementById("minus").onclick = function(){ if(buns>7){buns-=7;render();} };
+  document.getElementById("plus").onclick = function(){ if(buns<56){buns+=7;render();} };
+  var KEY = "rb-done", done = {};
+  try{ done = JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ done = {}; }
+  var items = document.querySelectorAll("ol.steps li");
+  items.forEach(function(li){
+    var cb = li.querySelector("input"), id = li.dataset.id;
+    cb.checked = !!done[id]; li.classList.toggle("is-done", cb.checked);
+    cb.addEventListener("change", function(){
+      done[id] = cb.checked; li.classList.toggle("is-done", cb.checked);
+      try{ localStorage.setItem(KEY, JSON.stringify(done)); }catch(e){}
+    });
+  });
+  document.getElementById("reset").onclick = function(){
+    done = {}; items.forEach(function(li){ li.querySelector("input").checked=false; li.classList.remove("is-done"); });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  };
+  render();
+})();
+</script>
+</body>
+</html>
