@@ -53,6 +53,8 @@ svg{display:block;max-width:100%;height:auto}
 .facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
 .facts span{font-size:.88rem;color:var(--soft)}
 .hero-art{background:var(--paper);border-radius:28px;padding:18px}
+.hero-art.photo{padding:0;overflow:hidden}
+.hero-art.photo img{display:block;width:100%;height:auto}
 
 /* layout */
 .cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
@@ -116,6 +118,8 @@ footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-co
   aside{position:static}
   ol.steps li{break-inside:avoid}
 }
+.source{font-size:.92rem;color:var(--soft);margin:10px 0 22px;max-width:42ch}
+.source a{color:inherit}
 </style>
 </head>
 <body>
@@ -126,6 +130,7 @@ footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-co
     <div>
       <h1>Milk Bread</h1>
       <p class="lede">Soft, pull-apart loaves shaped from rolled spirals, three to a pan.</p>
+      <p class="source">Adapted from <a href="https://www.xiaohongshu.com/explore/666b23f0000000000d00d8d8?xsec_token=ABZNvZHKQ0BDwCCBXMtZzjR9ZwRosdmnJoSTG8ns9Gdrs=&amp;xsec_source=pc_search&amp;source=web_explore_feed" target="_blank" rel="noopener">做面包的Even’s milk bread tutorial on Xiaohongshu</a>, then tested and adjusted in Bunny’s kitchen.</p>
       <ul class="facts">
         <li><b id="f-loaves">2 loaves</b><span>yield</span></li>
         <li><b>≈ 3½ hr</b><span>start to oven out</span></li>
@@ -133,24 +138,8 @@ footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-co
         <li><b id="f-balls">6 × 170 g</b><span>dough pieces</span></li>
       </ul>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 420 280">
-        <ellipse cx="210" cy="250" rx="190" ry="14" class="pk" opacity=".45"/>
-        <!-- loaf -->
-        <path class="cr" d="M40 238 V150 C40 118 60 96 88 96 C104 96 116 104 124 114 C132 90 152 76 176 76 C200 76 218 90 226 112 C234 96 250 86 270 86 C300 86 318 112 318 142 V238 Z"/>
-        <path class="sw" d="M92 120 C80 124 76 140 88 146 M170 98 C154 104 152 124 168 128 M268 108 C252 112 250 130 264 134"/>
-        <path class="ln" d="M124 114 C120 130 120 200 124 238 M226 112 C230 130 230 200 226 238" opacity=".6"/>
-        <ellipse cx="170" cy="100" rx="26" ry="8" fill="#fff" opacity=".35"/>
-        <!-- slice -->
-        <g transform="translate(300 128) rotate(8)">
-          <path class="cr" d="M10 112 V38 C10 18 26 6 46 6 C64 6 78 18 78 38 V112 Z"/>
-          <path class="dg" d="M18 106 V42 C18 26 30 14 46 14 C62 14 72 26 72 42 V106 Z" stroke-width="1.6"/>
-          <path d="M44 80 C30 78 28 58 44 56 C58 54 60 72 48 72 C40 72 40 64 46 64" fill="none" stroke="var(--crust)" stroke-width="1.8" stroke-linecap="round" opacity=".7"/>
-          <g class="fl" opacity=".25"><circle cx="30" cy="36" r="1.6"/><circle cx="60" cy="40" r="1.4"/><circle cx="34" cy="92" r="1.5"/><circle cx="62" cy="88" r="1.3"/><circle cx="54" cy="30" r="1.2"/></g>
-        </g>
-        <!-- bunny ears steam, a small nod -->
-        <path class="dash" d="M150 58 C144 44 156 36 150 22 M200 56 C194 42 206 34 200 20"/>
-      </svg>
+    <div class="hero-art photo">
+      <img src="../images/milk-bread-loaves.jpg" alt="Four milk bread loaves cooling on wire racks">
     </div>
   </header>
 
@@ -177,6 +166,7 @@ footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-co
         </div>
       </div>
       <table id="ing"></table>
+      <p class="pan"><a href="../guide.html" style="color:inherit">Ingredient guide →</a> which milk, eggs, butter, and yeast to use.</p>
     </aside>
 
     <main>
