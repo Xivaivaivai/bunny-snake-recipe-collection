@@ -53,6 +53,8 @@ svg{display:block;max-width:100%;height:auto}
 .facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
 .facts span{font-size:.88rem;color:var(--soft)}
 .hero-art{background:var(--paper);border-radius:28px;padding:18px}
+.hero-art.photo{padding:0;overflow:hidden}
+.hero-art.photo img{display:block;width:100%;height:auto}
 
 /* layout */
 .cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
@@ -141,22 +143,8 @@ aside h3:first-of-type{margin-top:0}
         <li><b>360°F</b><span>bake 16–18 min</span></li>
       </ul>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="20 80 390 186">
-        <ellipse cx="210" cy="246" rx="190" ry="14" class="pk" opacity=".45"/>
-        <!-- whole bun -->
-        <path class="cr" d="M40 236 C34 200 52 150 120 146 C188 150 206 200 200 236 Z"/>
-        <path d="M70 176 C84 160 104 156 118 158" fill="none" stroke="var(--butter)" stroke-width="5" stroke-linecap="round" opacity=".8"/>
-        <g class="fl"><ellipse cx="110" cy="164" rx="3.2" ry="1.8" transform="rotate(-20 110 164)"/><ellipse cx="126" cy="160" rx="3.2" ry="1.8" transform="rotate(15 126 160)"/><ellipse cx="118" cy="174" rx="3.2" ry="1.8" transform="rotate(40 118 174)"/><ellipse cx="134" cy="172" rx="3.2" ry="1.8" transform="rotate(-35 134 172)"/><ellipse cx="102" cy="176" rx="3.2" ry="1.8" transform="rotate(10 102 176)"/></g>
-        <path class="dash" d="M106 132 C100 118 112 110 106 96 M136 128 C130 114 142 106 136 92"/>
-        <!-- cut bun -->
-        <path class="cr" d="M228 236 C222 206 236 168 296 164 C356 168 370 206 364 236 Z"/>
-        <path class="dg" d="M236 236 C232 212 246 180 296 178 C346 180 360 212 356 236 Z"/>
-        <path class="bn" d="M256 236 C254 214 270 196 296 196 C322 196 338 214 336 236 Z"/>
-        <g class="bd"><ellipse cx="280" cy="216" rx="5" ry="3.4"/><ellipse cx="304" cy="210" rx="5" ry="3.4"/><ellipse cx="318" cy="224" rx="5" ry="3.4"/><ellipse cx="292" cy="228" rx="5" ry="3.4"/><ellipse cx="270" cy="230" rx="4" ry="3"/></g>
-        <!-- a crumb of bean, a small nod -->
-        <ellipse cx="384" cy="234" rx="6" ry="4" class="bn"/>
-      </svg>
+    <div class="hero-art photo">
+      <img src="../images/red-bean-buns-tray.jpg" alt="Red bean buns topped with black sesame on a parchment-lined tray">
     </div>
   </header>
 
@@ -183,6 +171,7 @@ aside h3:first-of-type{margin-top:0}
         <tr><td>Melted butter<small>Optional, brushed on after baking for a shiny finish</small></td><td class="amt">a little</td></tr>
       </table>
       <p class="pan">At 14 buns, this is one full batch of <a href="milk-bread.html">milk bread</a> dough, cut into pieces of <b>65–70&nbsp;g</b>. One batch usually makes 13–14.</p>
+      <p class="pan"><a href="../guide.html">Ingredient guide →</a> which milk, eggs, butter, and yeast to use.</p>
     </aside>
 
     <main>
