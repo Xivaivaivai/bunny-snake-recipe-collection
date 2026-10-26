@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blueberry Swirl Loaf — Bunny &amp; Snake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA; --bean:#4B2E63; --beanlt:#8A6BB0; --berry:#B8A2D6;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22; --bean:#5E3D7C; --beanlt:#9B80C2; --berry:#7D649E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22; --bean:#5E3D7C; --beanlt:#9B80C2; --berry:#7D649E;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;margin-bottom:48px}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:900;letter-spacing:-.02em}
+.hero p.lede{font-size:1.15rem;color:var(--soft);max-width:34ch;margin:14px 0 22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column}
+.facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
+.facts span{font-size:.88rem;color:var(--soft)}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+.hero-art.photo{padding:0;overflow:hidden}
+.hero-art.photo img{display:block;width:100%;height:auto}
+
+/* layout */
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--paper);border-radius:22px;padding:22px}
+aside h2{font-size:1.5rem;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .92rem Figtree,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.step button{width:36px;height:36px;border:0;background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;border-radius:999px}
+.step output{min-width:78px;text-align:center;font-weight:600;font-size:.95rem}
+button:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.amt{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+td small{display:block;color:var(--soft);font-size:.82rem;line-height:1.35}
+tr.held td:first-child::after{content:" · add later";color:var(--crust);font-size:.8rem;font-weight:600}
+.pan{margin-top:14px;font-size:.92rem;color:var(--soft)}
+.pan b{color:var(--ink)}
+
+/* steps */
+.phase{margin-bottom:34px}
+.phase h2{font-size:1.9rem;margin-bottom:6px}
+.phase > p{color:var(--soft);margin:0 0 16px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s var(--start,0)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:190px 1fr;gap:20px;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
+.art{background:var(--bg);border-radius:14px;padding:6px;align-self:start}
+.txt h3{font-size:1.25rem;display:flex;gap:10px;align-items:baseline}
+.txt h3::before{content:counter(s);font-size:.95rem;color:var(--paper);background:var(--crust);min-width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+.txt p{margin:8px 0 0}
+.time{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+.tip{margin-top:12px;background:var(--tip);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.tip b{color:var(--crustdk)}
+.done{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--soft);cursor:pointer;width:fit-content}
+.done input{width:18px;height:18px;accent-color:var(--crust)}
+li.is-done{opacity:.55}
+.note-added{font-size:.9rem;color:var(--soft);font-style:italic}
+.reset{border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .9rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;cursor:pointer}
+.pancare{margin-bottom:40px}
+.care{background:var(--paper);border-radius:22px;padding:22px 24px}
+.care h3{font-size:1.15rem;margin-top:14px}
+.care h3:first-of-type{margin-top:0}
+.care p{margin:6px 0 0}
+.care .warn{margin-top:14px;background:var(--tip);border-radius:12px;padding:10px 14px}
+.care .warn b{color:var(--crustdk)}
+footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  aside{position:static}
+}
+@media (max-width:560px){
+  ol.steps li{grid-template-columns:1fr}
+  .art{max-width:260px}
+}
+@media print{
+  body{background:#fff}
+  .ctrl,.done,.reset{display:none}
+  aside{position:static}
+  ol.steps li{break-inside:avoid}
+}
+.bn{fill:var(--bean);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bd{fill:var(--beanlt)}
+.wh{stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.brand a,.txt a,aside a{color:inherit}
+.brand a{text-decoration:none}
+.brand a:hover{color:var(--crustdk)}
+aside h3{font-size:1.1rem;margin:18px 0 4px}
+aside h3:first-of-type{margin-top:0}
+.br{fill:var(--berry);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.art.photo{padding:0;overflow:hidden}
+.art.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.source{font-size:.92rem;color:var(--soft);margin:10px 0 22px;max-width:42ch}
+.source a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="../">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</div>
+
+  <header class="hero">
+    <div>
+      <h1>Blueberry Swirl Loaf</h1>
+      <p class="lede">A soft purple loaf colored with homemade blueberry jam, filled with more jam and shaped with twisted strands.</p>
+      <p class="source">Adapted from <a href="https://www.bilibili.com/video/BV1AGXjYsEGY/" target="_blank" rel="noopener">简简厨房’s blueberry loaf video on Bilibili</a>, then tested and adjusted in Bunny’s kitchen.</p>
+      <ul class="facts">
+        <li><b id="f-loaves">2 loaves</b><span>yield</span></li>
+        <li><b>≈ 4½ hr</b><span>jam to oven out</span></li>
+        <li><b>325°F</b><span>bake 28–35 min</span></li>
+      </ul>
+    </div>
+    <div class="hero-art photo">
+      <img src="../images/blueberry-loaf.jpg" alt="A blueberry swirl loaf torn open on a cooling rack, showing purple crumb and dark jam swirls">
+    </div>
+  </header>
+
+  <div class="cols">
+    <aside>
+      <h2>Ingredients</h2>
+      <div class="ctrl">
+        <div class="step" role="group" aria-label="Number of loaves">
+          <button type="button" id="minus" aria-label="Fewer loaves">−</button>
+          <output id="loaves" aria-live="polite">2 loaves</output>
+          <button type="button" id="plus" aria-label="More loaves">+</button>
+        </div>
+      </div>
+      <h3>Blueberry jam</h3>
+      <table id="t-jam"></table>
+      <h3>Dough</h3>
+      <table id="t-dough"></table>
+      <h3>To thicken the filling</h3>
+      <table id="t-thick"></table>
+      <p class="pan">The jam goes into both the dough and the filling. Each loaf is shaped from half of the dough, so you can make one at a time.</p>
+      <p class="pan"><a href="../guide.html">Ingredient guide →</a> which milk, butter, flour, and yeast to use.</p>
+    </aside>
+
+    <main>
+      <section class="phase">
+        <h2>Make the jam</h2>
+        <ol class="steps" style="--start:0">
+          <li data-id="1">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M36 66 H164 V108 C164 120 156 126 144 126 H56 C44 126 36 120 36 108 Z"/>
+              <path class="ln" d="M164 78 H188"/>
+              <path class="br" d="M44 66 C60 56 80 60 100 56 C120 60 140 56 156 66 Z"/>
+              <g class="fl"><circle cx="70" cy="60" r="5"/><circle cx="92" cy="56" r="5"/><circle cx="116" cy="58" r="5"/><circle cx="136" cy="61" r="5"/></g>
+              <path class="dash" d="M76 44 C70 34 82 28 76 18 M124 44 C118 34 130 28 124 18"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Cook the jam</h3>
+              <p>Cook the blueberries with the sugar, stirring, until the berries break down and the mixture turns thick and jammy. Let it cool completely.</p>
+              <div class="tip"><b>No lemon juice.</b> It’s left out on purpose, since this jam goes into the dough and Bunny keeps it from interfering with the gluten.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Make the dough</h2>
+        <ol class="steps" style="--start:1">
+          <li data-id="2">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="br" d="M52 70 C56 48 80 40 100 40 C120 40 144 48 148 70 Z"/>
+              <g class="fl" opacity=".5"><circle cx="84" cy="56" r="2.4"/><circle cx="104" cy="50" r="2"/><circle cx="120" cy="60" r="2.4"/></g>
+            </svg></div>
+            <div class="txt">
+              <h3>Mix and rest</h3>
+              <p>Combine everything for the dough except the butter and salt: flour, cooled jam, milk, sugar, and yeast. Mix until no dry flour remains, then cover and let it rest so the flour can hydrate.</p>
+              <span class="time">Rest about 30 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="3">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="br" d="M40 108 C30 80 60 56 100 56 C140 56 170 80 160 108 Z"/>
+              <path class="bt" d="M128 40 L152 32 L160 50 L136 58 Z"/>
+              <g class="fl"><circle cx="64" cy="36" r="2"/><circle cx="72" cy="30" r="2"/><circle cx="70" cy="40" r="2"/></g>
+              <path class="ln" d="M80 84 C90 76 110 76 120 84" opacity=".5"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Knead in butter and salt</h3>
+              <p>Knead until the dough forms a rough film when stretched. Add the butter and salt and keep kneading until the dough is smooth and stretchy and reaches about 80% development.</p>
+              <div class="tip"><b>No full windowpane needed.</b> A strong, stretchy dough that tears only after a good stretch is enough here.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="4">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="br" d="M24 110 C20 84 36 64 62 62 C88 64 104 84 100 110 Z"/>
+              <path class="br" d="M100 110 C96 84 112 64 138 62 C164 64 180 84 176 110 Z"/>
+              <path class="dash" d="M62 50 C56 40 68 34 62 24 M138 50 C132 40 144 34 138 24"/>
+            </svg></div>
+            <div class="txt">
+              <h3 id="s-div-title">Divide and first proof</h3>
+              <p id="s-div">Divide the dough into <b>2 equal pieces</b>, one per loaf. Round each, cover, and let them rise somewhere warm.</p>
+              <span class="time">About 40 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Fill and shape</h2>
+        <p>Thicken the filling while the dough rises.</p>
+        <ol class="steps" style="--start:4">
+          <li data-id="5">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M36 66 H164 V108 C164 120 156 126 144 126 H56 C44 126 36 120 36 108 Z"/>
+              <path class="ln" d="M164 78 H188"/>
+              <path class="br" style="fill:var(--bean)" d="M64 66 C66 50 82 42 100 42 C118 42 134 50 136 66 Z"/>
+              <path class="ln" d="M150 20 L120 52" />
+            </svg></div>
+            <div class="txt">
+              <h3>Thicken the filling</h3>
+              <p>Mix the cornstarch with the water, stir it into the remaining jam, and heat while stirring until the jam thickens and pulls together into a mass. Let it cool.</p>
+              <div class="tip"><b>Why thicken it?</b> Thickened jam weeps much less liquid while the loaf proofs, so the swirls stay neat.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="6">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="20" y="40" width="160" height="72" rx="10" class="br"/>
+              <rect x="26" y="20" width="148" height="12" rx="6" class="dg"/>
+              <text x="100" y="82" text-anchor="middle" font-size="13" font-family="Figtree,sans-serif" font-weight="600" fill="var(--ink)">about 7 × 15 in</text>
+            </svg></div>
+            <div class="txt">
+              <h3>Roll out</h3>
+              <p>Dust the counter lightly with flour. Roll the dough into a rectangle about 7 × 15 inches, pressing out the air as you go.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="7">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="20" y="40" width="160" height="72" rx="10" class="br"/>
+              <rect x="100" y="42" width="78" height="68" rx="8" style="fill:var(--bean)"/>
+              <g style="fill:var(--beanlt)"><circle cx="118" cy="60" r="3"/><circle cx="146" cy="56" r="2.6"/><circle cx="132" cy="80" r="3"/><circle cx="160" cy="88" r="2.6"/><circle cx="116" cy="96" r="2.6"/></g>
+              <path class="ln" d="M100 40 V112" stroke-dasharray="4 5" opacity=".6"/>
+              <path class="ln" d="M56 32 C76 14 120 14 142 30 M142 30 L132 30 M142 30 L138 21" opacity=".7"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Spread and fold</h3>
+              <p>Spread the thickened jam over one half of the sheet, so the jam covers a 7 × 7½-inch half. Use only enough to cover the dough; a thick layer is hard to shape. Fold the other half over the jam, so you end up with a piece about 7 × 7½ inches.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="8">
+            <div class="art photo"><img src="../images/blueberry-shaping.jpg" alt="Folded purple dough with the lower half cut into twisted strips showing jam inside"></div>
+            <div class="txt">
+              <h3>Cut and twist</h3>
+              <p>Cut the bottom end of the folded dough into 6–8 strips, leaving the top end whole. Twist each strip twice to show the jam pattern.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="9">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M40 52 H160 L152 124 H48 Z"/>
+              <path class="br" d="M52 120 V80 C52 66 64 58 78 58 C90 58 96 64 100 70 C104 64 110 58 122 58 C136 58 148 66 148 80 V120 Z"/>
+              <path class="ln" d="M70 72 C76 80 70 90 76 98 M100 74 C106 82 100 92 106 100 M128 72 C134 80 128 90 134 98" style="stroke:var(--bean)"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Roll up and pan</h3>
+              <p>Starting from the uncut top end, roll the dough down toward the twisted strands. Place it in the loaf pan seam side down. If you’re making more than one loaf, repeat with each piece.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Bake</h2>
+        <ol class="steps" style="--start:9">
+          <li data-id="10">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M40 52 H160 L152 124 H48 Z"/>
+              <path class="br" d="M46 60 V40 C46 24 58 16 72 16 C86 16 94 22 100 30 C106 22 114 16 128 16 C142 16 154 24 154 40 V60 Z"/>
+              <path class="ln" d="M40 56 H160" stroke-dasharray="5 5" opacity=".6"/>
+              <text x="180" y="60" text-anchor="middle" font-size="12" font-family="Figtree,sans-serif" font-weight="600" fill="var(--ink)">90%</text>
+            </svg></div>
+            <div class="txt">
+              <h3>Final proof</h3>
+              <p>Cover and let the loaf rise in a warm spot until the dough is about 90% of the way to the top of the pan. Preheat the oven to 325°F toward the end.</p>
+              <span class="time">About 1½–2 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="11">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M40 62 H160 L152 128 H48 Z"/>
+              <path class="cr" d="M46 64 V42 C46 26 58 18 72 18 C86 18 94 24 100 32 C106 24 114 18 128 18 C142 18 154 26 154 42 V64 Z"/>
+              <path class="ln" d="M40 12 L100 4 L160 12" style="stroke:var(--soft)"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Bake</h3>
+              <p>Bake at 325°F, watching the color. The timing depends on your pan:</p>
+              <p><b>Dark pan:</b> about 28 minutes, then take it out.</p>
+              <p><b>Silver pan:</b> it browns more slowly, so at about 28 minutes lay a sheet of foil loosely over the top to keep it from getting too dark, and bake another 7–8 minutes, about 35 minutes total.</p>
+              <span class="time">28–35 min at 325°F</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="12">
+            <div class="art photo"><img src="../images/blueberry-slice.jpg" alt="A torn piece of blueberry loaf held in hand, showing soft purple crumb" style="object-position:50% 55%"></div>
+            <div class="txt">
+              <h3>Unmold and cool</h3>
+              <p>Turn the loaf out of the pan and let it cool on a rack before slicing or packing.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        <span><a href="../" style="color:inherit">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</span>
+        <button type="button" class="reset" id="reset">Clear checkmarks</button>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  // base amounts are for 2 loaves
+  var BASE = 2;
+  var T = {
+    "t-jam": [
+      {name:"Blueberries", r:[470,480]},
+      {name:"Sugar", r:[94,96], note:"20% of the blueberry weight"}
+    ],
+    "t-dough": [
+      {name:"Bread flour", g:500},
+      {name:"Blueberry jam", g:140, note:"From the batch above, cooled"},
+      {name:"Whole milk", g:290},
+      {name:"Sugar", g:30},
+      {name:"Instant yeast", tsp:2.5, note:"Sweet-dough yeast"},
+      {name:"Butter, softened", g:50, held:true, note:"Salted or unsalted"},
+      {name:"Salt", g:6, held:true}
+    ],
+    "t-thick": [
+      {name:"Remaining blueberry jam", txt:"all"},
+      {name:"Cornstarch", r:[5,8]},
+      {name:"Water", g:10}
+    ]
+  };
+  var loaves = BASE;
+  try{ var st = JSON.parse(localStorage.getItem("bb-settings")||"{}"); if(st.loaves>=1 && st.loaves<=6) loaves = st.loaves; }catch(e){}
+
+  function quarter(x){ var q = Math.round(x*4)/4, w = Math.floor(q), f = q-w;
+    var fr = f===0.25?"¼":f===0.5?"½":f===0.75?"¾":"";
+    return (w>0?w:"")+fr || "0"; }
+
+  function render(){
+    var k = loaves/BASE;
+    Object.keys(T).forEach(function(id){
+      var rows = "";
+      T[id].forEach(function(i){
+        var amt;
+        if(i.txt) amt = i.txt;
+        else if(i.r){ var a=Math.round(i.r[0]*k), b=Math.round(i.r[1]*k); amt = (a===b? a : a+"–"+b)+" g"; }
+        else if(i.tsp) amt = quarter(i.tsp*k)+" tsp";
+        else amt = Math.round(i.g*k)+" g";
+        rows += '<tr'+(i.held?' class="held"':'')+'><td>'+i.name+(i.note?'<small>'+i.note+'</small>':'')+'</td><td class="amt">'+amt+'</td></tr>';
+      });
+      document.getElementById(id).innerHTML = rows;
+    });
+    var L = loaves+(loaves===1?" loaf":" loaves");
+    document.getElementById("loaves").textContent = L;
+    document.getElementById("f-loaves").textContent = L;
+    if(loaves===1){
+      document.getElementById("s-div-title").textContent = "First proof";
+      document.getElementById("s-div").textContent = "Round the dough, cover, and let it rise somewhere warm.";
+    } else {
+      document.getElementById("s-div-title").textContent = "Divide and first proof";
+      document.getElementById("s-div").innerHTML = "Divide the dough into <b>"+loaves+" equal pieces</b>, one per loaf. Round each, cover, and let them rise somewhere warm.";
+    }
+    document.getElementById("minus").disabled = loaves<=1;
+    document.getElementById("plus").disabled = loaves>=6;
+    try{ localStorage.setItem("bb-settings", JSON.stringify({loaves:loaves})); }catch(e){}
+  }
+  document.getElementById("minus").onclick = function(){ if(loaves>1){loaves--;render();} };
+  document.getElementById("plus").onclick = function(){ if(loaves<6){loaves++;render();} };
+
+  var KEY = "bb-done", done = {};
+  try{ done = JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ done = {}; }
+  var items = document.querySelectorAll("ol.steps li");
+  items.forEach(function(li){
+    var cb = li.querySelector("input"), id = li.dataset.id;
+    cb.checked = !!done[id]; li.classList.toggle("is-done", cb.checked);
+    cb.addEventListener("change", function(){
+      done[id] = cb.checked; li.classList.toggle("is-done", cb.checked);
+      try{ localStorage.setItem(KEY, JSON.stringify(done)); }catch(e){}
+    });
+  });
+  document.getElementById("reset").onclick = function(){
+    done = {}; items.forEach(function(li){ li.querySelector("input").checked=false; li.classList.remove("is-done"); });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  };
+  render();
+})();
+</script>
+</body>
+</html>
