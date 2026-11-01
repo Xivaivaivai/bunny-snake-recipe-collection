@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ingredient Guide — Bunny &amp; Snake</title>
+<title>About — Bunny &amp; Snake</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 :root{
   --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
   --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
-  --tip:#FDF3DA; --leaf:#9DBF8E; --yolk:#F2A23A; --steel:#C9D3DE;
+  --tip:#FDF3DA; --leaf:#9DBF8E; --cutred:#D63A31;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
@@ -19,13 +19,13 @@
   :root:not([data-theme="light"]){
     --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
     --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
-    --tip:#2A2A22; --leaf:#7FA270; --yolk:#E8952E; --steel:#56657A;
+    --tip:#2A2A22; --leaf:#7FA270; --cutred:#E2574C;
   }
 }
 :root[data-theme="dark"]{
   --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
   --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
-  --tip:#2A2A22; --leaf:#7FA270; --yolk:#E8952E; --steel:#56657A;
+  --tip:#2A2A22; --leaf:#7FA270; --cutred:#E2574C;
 }
 *,*::before,*::after{box-sizing:inherit}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -34,216 +34,204 @@ h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,syste
 svg{display:block;max-width:100%;height:auto}
 .ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
-.wh{fill:var(--paper);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
-.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
-.yk{fill:var(--yolk);stroke:var(--ink);stroke-width:2.2}
-.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
 .cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
 .fl{fill:var(--ink)}
 
 .brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
 .brand a{color:inherit;text-decoration:none}
 .brand a:hover{color:var(--crustdk)}
-a{color:inherit}
 a:focus-visible{outline:3px solid var(--crust);outline-offset:2px;border-radius:4px}
 
-h1{font-size:clamp(2.6rem,8vw,4.4rem);font-weight:900;letter-spacing:-.02em}
-.lede{font-size:1.15rem;color:var(--soft);margin:12px 0 44px;max-width:42ch}
+h1{font-size:clamp(2.8rem,8vw,4.6rem);font-weight:900;letter-spacing:-.02em}
+.lede{font-size:1.15rem;color:var(--soft);margin:12px 0 44px;max-width:40ch}
 
-section{margin-bottom:44px;scroll-margin-top:16px}
-section > h2{font-size:1.7rem;margin-bottom:8px}
-section > p{margin:0 0 16px;max-width:62ch;color:var(--soft)}
+section{margin-bottom:40px}
+section h2{font-size:1.7rem;margin-bottom:10px}
+section p{margin:0 0 12px;max-width:62ch}
 
-.item{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:start;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
-.art{background:var(--bg);border-radius:14px;padding:6px}
-.item h3{font-size:1.25rem}
-.pick{display:inline-block;margin:8px 0 0;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
-.item p{margin:8px 0 0}
+/* the bagel debate */
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 16px}
+.side{background:var(--paper);border-radius:22px;padding:18px}
+.side .art{background:var(--bg);border-radius:14px;padding:8px;margin-bottom:14px}
+.side h3{font-size:1.2rem}
+.side .who{font-size:.9rem;color:var(--crustdk);font-weight:600;margin:2px 0 8px}
+.side p{font-size:.97rem;margin:0}
+.reveal{background:var(--tip);border-radius:16px;padding:14px 18px;max-width:none}
+.reveal b{color:var(--crustdk)}
 
-.plain{background:var(--paper);border-radius:22px;padding:18px 20px}
-.plain p{margin:0}
-.plain p + p{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-
-.yeast{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 14px}
-.y{background:var(--paper);border-radius:22px;padding:18px}
-.y .art{margin-bottom:12px}
-.y .art{height:190px}
-.y .photo{background:#fff;display:grid;place-items:center;padding:10px}
-.y .photo img{max-height:160px;width:auto;max-width:100%;border-radius:8px}
-.y .art svg{height:100%;width:100%}
-.y h3{font-size:1.2rem}
-.y .use{font-size:.9rem;font-weight:600;color:var(--crustdk);margin:2px 0 8px}
-.y p{font-size:.97rem;margin:0}
-.rule{background:var(--tip);border-radius:16px;padding:14px 18px;max-width:none!important;color:var(--ink)!important}
-.rule b{color:var(--crustdk)}
-
+.scene{background:var(--paper);border-radius:22px;padding:16px;margin-top:18px;max-width:520px}
+.scene svg{width:100%}
+.scene figcaption{text-align:center;font-family:"Zen Maru Gothic",Figtree,sans-serif;font-weight:700;font-size:1.05rem;margin-top:6px}
+.wh{fill:var(--paper);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.lf{fill:var(--leaf);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.photo{margin:18px 0 0;max-width:560px}
+.photo img{display:block;width:100%;height:auto;border-radius:22px}
+.photo figcaption{font-size:.92rem;color:var(--soft);margin-top:8px}
+.cut{fill:var(--cutred)}
+.hole{fill:var(--paper)}
+.hole .hole-line{fill:none;stroke:var(--paper);stroke-width:3.2;stroke-linecap:round}
+.hole .cut-dot{fill:var(--cutred)}
+.hole .saw{fill:none;stroke:var(--paper);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round}
+.zodiac{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 0;max-width:520px}
+.z{margin:0;background:var(--paper);border-radius:22px;padding:14px 14px 16px;text-align:center}
+.z svg{width:100%;max-width:170px;margin:0 auto}
+.z figcaption{display:grid;gap:2px;margin-top:6px}
+.z .zh{font-size:1.6rem;font-weight:700;color:var(--cutred);line-height:1.2}
+.z b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.1rem}
+.z figcaption span:last-child{font-size:.88rem;color:var(--soft)}
 footer{margin-top:48px;color:var(--soft);font-size:.9rem}
+footer a{color:inherit}
 
-@media (max-width:600px){
-  .item{grid-template-columns:1fr}
-  .item .art{max-width:200px}
-  .yeast{grid-template-columns:1fr}
-}
+@media (max-width:600px){ .debate{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="brand"><a href="./">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</div>
 
-  <h1>Ingredient Guide</h1>
-  <p class="lede">Good ingredients show up in the bread. Here’s what Bunny buys, where it matters most, and where it doesn’t.</p>
+  <h1>About</h1>
+  <p class="lede">A rabbit, a snake, and one bagel argument that got a little out of hand.</p>
 
   <section>
-    <h2>Yeast: sweet dough needs its own kind</h2>
-    <p>Many bakers don’t realize there are two kinds of instant yeast. Sugar pulls water away from yeast, so in a sweet dough, regular yeast works slowly and the dough struggles to rise. Sweet-dough yeast is made to handle it.</p>
-
-    <div class="yeast">
-      <div class="y">
-        <div class="art photo"><img src="images/saf-gold.jpg" alt="A bag of SAF-Instant Gold yeast"></div>
-        <h3>Sweet-dough yeast</h3>
-        <div class="use">Also called osmotolerant · Bunny uses SAF Gold</div>
-        <p>Use this for sweet, enriched doughs like milk bread and red bean buns. All the recipes on this site assume this kind.</p>
-      </div>
-      <div class="y">
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 100">
-          <path class="wh" d="M60 90 V28 C60 20 66 14 74 14 H126 C134 14 140 20 140 28 V90 Z"/>
-          <path class="ln" d="M60 38 H140"/>
-          <path class="dg" d="M84 74 C82 66 90 62 100 62 C110 62 118 66 116 74 Z"/>
-        </svg></div>
-        <h3>Regular instant yeast</h3>
-        <div class="use">For lean and lightly sweet doughs</div>
-        <p>Works well when there’s little or no sugar, like plain loaves and bagels. In sweet dough, it slows down. Once the sugar reaches about 10% of the flour weight, switch to sweet-dough yeast.</p>
-      </div>
-    </div>
-
-    <p class="rule"><b>Only have regular yeast?</b> For a sweet dough, use 1.3 to 1.5 times the amount the recipe calls for.</p>
-  </section>
-
-  <section>
-    <h2>Flour: bread flour for structure</h2>
-    <p>The main difference between bread flour and all-purpose flour is protein. When flour meets liquid and gets kneaded, its proteins form gluten, a stretchy network that traps the gas from the yeast. More protein means a stronger network, and that network is what holds a soft bread up.</p>
-
-    <div class="yeast">
-      <div class="y">
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 120">
-          <path class="cr" d="M54 112 V52 C54 30 66 16 84 16 C92 16 98 20 100 26 C102 20 108 16 116 16 C134 16 146 30 146 52 V112 Z"/>
-          <path class="dg" d="M66 112 V58 C66 40 76 30 88 30 C94 30 98 34 100 38 C102 34 106 30 112 30 C124 30 134 40 134 58 V112 Z"/>
-          <path class="ln" d="M80 50 C84 70 82 90 86 108 M100 44 C98 66 102 88 100 108 M120 50 C116 70 118 90 114 108" opacity=".45"/>
-        </svg></div>
-        <h3>Bread flour</h3>
-        <div class="use">Higher protein, about 12–14%</div>
-        <p>Builds strong gluten, so the dough rises tall, holds its shape, and pulls apart in soft, stretchy strands. All the recipes on this site use bread flour.</p>
-      </div>
-      <div class="y">
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 120">
-          <path class="cr" d="M48 112 V78 C48 58 62 46 82 46 C90 46 96 50 100 54 C104 50 110 46 118 46 C138 46 152 58 152 78 V112 Z"/>
-          <path class="dg" d="M60 112 V82 C60 68 70 60 84 60 C92 60 96 62 100 66 C104 62 108 60 116 60 C130 60 140 68 140 82 V112 Z"/>
-          <g class="fl" opacity=".3"><circle cx="80" cy="84" r="2"/><circle cx="96" cy="94" r="1.8"/><circle cx="112" cy="82" r="2"/><circle cx="124" cy="98" r="1.6"/><circle cx="86" cy="102" r="1.6"/></g>
-        </svg></div>
-        <h3>All-purpose flour</h3>
-        <div class="use">Lower protein, about 10–12%</div>
-        <p>Makes weaker gluten. The bread comes out shorter and more cake-like, with less of that stretchy pull, and it’s more likely to sink or spread.</p>
-      </div>
-    </div>
-
-    <p class="rule"><b>Gluten is also why the windowpane test matters.</b> When a thin piece of dough stretches until you can see light through it, the gluten network is fully developed and ready to hold the rise.</p>
-  </section>
-
-  <section id="cinnamon">
-    <h2>Cinnamon: two kinds to choose from</h2>
-    <p>Ground cinnamon in the store usually comes from one of two trees, and they taste noticeably different.</p>
-
-    <div class="yeast">
-      <div class="y">
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 120">
-          <g transform="rotate(-12 100 60)">
-            <rect x="34" y="44" width="132" height="30" rx="15" class="cr"/>
-            <path class="ln" d="M44 59 C60 52 76 66 92 59 C108 52 124 66 140 59 C148 56 154 57 158 59" opacity=".55"/>
-            <ellipse cx="160" cy="59" rx="6" ry="15" class="dg"/>
-            <path class="ln" d="M160 48 C156 54 156 64 160 70 M160 52 C158 56 158 62 160 66" opacity=".6"/>
+    <h2>The name</h2>
+    <p>Bunny &amp; Snake comes from the Chinese zodiac. Bunny was born in the Year of the Rabbit, and her husband, Snake, in the Year of the Snake.</p>
+    <div class="zodiac">
+      <figure class="z">
+        <svg viewBox="0 0 160 150" aria-hidden="true">
+          <g class="cut">
+            <path d="M98 52 C84 34 64 20 48 18 C40 20 52 38 90 62 Z"/>
+            <path d="M108 50 C104 30 94 12 82 8 C74 10 80 32 98 58 Z"/>
+            <ellipse cx="74" cy="104" rx="44" ry="33"/>
+            <ellipse cx="110" cy="70" rx="25" ry="19" transform="rotate(-18 110 70)"/>
+            <path d="M92 86 C104 84 114 92 114 104 L116 136 C116 142 102 142 102 136 L98 108 Z"/>
+            <ellipse cx="62" cy="136" rx="30" ry="7"/>
+            <circle cx="28" cy="102" r="10"/>
           </g>
-          <path d="M40 100 C60 92 90 92 110 100 C90 106 60 106 40 100 Z" fill="var(--crust)" opacity=".55"/>
-        </svg></div>
-        <h3>Ceylon cinnamon</h3>
-        <div class="use">Milder, sweeter, more delicate</div>
-        <p>A softer, more floral cinnamon. It has only trace amounts of coumarin, a natural compound that can be hard on the liver in large amounts, so it’s the gentler choice if you eat cinnamon often.</p>
-      </div>
-      <div class="y">
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 120">
-          <g transform="rotate(-12 100 60)">
-            <rect x="34" y="42" width="132" height="34" rx="17" fill="var(--crustdk)" stroke="var(--ink)" stroke-width="2.2"/>
-            <path d="M160 42 C150 50 150 68 160 76 C172 70 172 48 160 42 Z" class="cr"/>
-            <path class="ln" d="M160 50 C154 56 154 62 160 68" opacity=".6"/>
+          <g class="hole">
+            <path d="M88 52 C76 42 62 32 54 26 C64 28 80 38 92 48 Z"/>
+            <path d="M100 48 C96 36 90 24 86 16 C92 22 100 34 104 46 Z"/>
+            <path d="M112 64 C116 59 124 60 126 66 C121 64 117 64 112 66 Z"/>
+            <circle cx="119" cy="66" r="2"/>
+            <path class="saw" d="M46 118 C46 98 62 88 80 92"/>
+            <path class="saw" d="M54 120 C56 106 66 100 78 102"/>
           </g>
-          <path d="M40 100 C60 92 90 92 110 100 C90 106 60 106 40 100 Z" fill="var(--crustdk)" opacity=".7"/>
+        </svg>
+        <figcaption><span class="zh" lang="zh">兔</span><b>Bunny</b><span>Year of the Rabbit</span></figcaption>
+      </figure>
+      <figure class="z">
+        <svg viewBox="0 0 160 150" aria-hidden="true">
+          <g>
+            <path d="M112 50 C84 54 64 66 68 84 C72 102 116 98 118 116 C120 134 80 140 52 130 C40 126 32 120 26 110" fill="none" stroke="var(--cutred)" stroke-width="18" stroke-linecap="butt"/>
+            <circle cx="112" cy="50" r="9" class="cut"/>
+            <path d="M34 106 C32 94 28 84 20 76 C21 88 20 102 18 115 Z" class="cut"/>
+            <ellipse cx="120" cy="44" rx="22" ry="15" transform="rotate(-10 120 44)" class="cut"/>
+            <path d="M140 46 L152 47 L158 41 L154 49 L158 56 L152 51 L140 51 Z" class="cut"/>
+          </g>
+          <g class="hole">
+            <path d="M118 36 C122 31 130 32 132 38 C127 36 123 36 118 38 Z"/>
+            <circle cx="125" cy="38" r="2"/>
+            <path class="saw" d="M86 58 C88 64 88 68 86 72"/>
+            <path class="saw" d="M72 74 C78 76 80 80 78 86"/>
+            <path class="saw" d="M90 94 C92 100 92 104 90 108"/>
+            <path class="saw" d="M108 108 C114 108 116 114 114 118"/>
+            <path class="saw" d="M100 128 C102 134 100 138 96 140"/>
+            <path class="saw" d="M72 128 C74 134 72 138 68 140"/>
+            <path class="saw" d="M46 122 C50 126 48 132 44 134"/>
+          </g>
+        </svg>
+        <figcaption><span class="zh" lang="zh">蛇</span><b>Snake</b><span>Year of the Snake</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>It started with bagels</h2>
+    <p>Bunny’s very first bake was a bagel. Back in Seattle, a bagel shop with one location downtown and another in University Village made the best bagels around. Its name has slipped away, but those bagels set the standard.</p>
+  </section>
+
+  <section>
+    <h2>The bagel debate</h2>
+    <p>Snake and Bunny learned from very different teachers, and each was sure their way was better. A few words were exchanged. To settle it, each baked a batch.</p>
+
+    <div class="debate">
+      <div class="side">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 220 120">
+          <ellipse cx="110" cy="66" rx="70" ry="40" class="cr"/>
+          <ellipse cx="110" cy="62" rx="15" ry="8" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.2"/>
+          <path class="dg" d="M100 4 H120 V58 A10 8 0 0 1 100 58 Z"/>
+          <path class="ln" d="M104 50 C108 53 112 53 116 50" opacity=".5"/>
         </svg></div>
-        <h3>Vietnamese (Saigon) cinnamon</h3>
-        <div class="use">Bold, spicy, and strong</div>
-        <p>The punchy, classic cinnamon-roll flavor. It’s much higher in coumarin, which is fine in normal baking amounts but worth keeping in mind if you eat a lot of cinnamon regularly.</p>
+        <h3>Poke a hole</h3>
+        <div class="who">Snake, via YouTube</div>
+        <p>Loose, rough-and-ready videos from guys who toss the dough around. Roll a ball, push a thumb through the middle, and stretch it open.</p>
+      </div>
+      <div class="side">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 220 120">
+          <path class="dg" d="M30 30 H190 A12 12 0 0 1 190 54 H30 A12 12 0 0 1 30 30 Z" opacity=".55"/>
+          <path d="M110 64 m-58 0 a58 32 0 1 0 116 0 a58 32 0 1 0 -116 0" fill="none" stroke="var(--ink)" stroke-width="26" stroke-linecap="round"/>
+          <path d="M110 64 m-58 0 a58 32 0 1 0 116 0 a58 32 0 1 0 -116 0" fill="none" stroke="var(--crust)" stroke-width="21.6"/>
+          <path class="ln" d="M164 56 C170 64 170 72 164 78" opacity=".55"/>
+        </svg></div>
+        <h3>Roll and loop</h3>
+        <div class="who">Bunny, via Xiaohongshu</div>
+        <p>The tidier method, and the one you see most these days, since social media loves a pretty bagel. Roll the dough into a rope, wrap it into a ring, and seal the ends.</p>
       </div>
     </div>
 
-    <p class="rule"><b>Which to pick?</b> Saigon if you want a strong, spicy cinnamon flavor. Ceylon if you prefer something softer, or if you eat cinnamon every day.</p>
+    <p class="reveal">A little more research settled it: <b>both are real, time-tested ways to shape a bagel.</b> Snake’s “messy” method has a proper name, and Bunny’s neat one is a classic too. Nobody lost.</p>
+    <figure class="photo">
+      <img src="images/bagels.jpg" alt="Two homemade bagels on a plate, one topped with everything seasoning">
+      <figcaption>The bagels Bunny and Snake ended up making together.</figcaption>
+    </figure>
   </section>
 
   <section>
-    <h2>Worth paying more for</h2>
-    <p>Bunny uses organic ingredients across the board. These three make the biggest difference in soft, enriched breads like milk bread.</p>
-
-    <div class="item">
-      <div class="art" aria-hidden="true"><svg viewBox="0 0 140 110">
-        <path class="wh" d="M48 100 V44 L56 30 V18 H84 V30 L92 44 V100 Z"/>
-        <path class="ln" d="M56 30 H84"/>
-        <path d="M50 62 H90 V98 H50 Z" fill="var(--steel)" opacity=".5"/>
-        <path class="ln" d="M62 72 C66 66 74 66 78 72" opacity=".6"/>
-      </svg></div>
-      <div>
-        <h3>Milk</h3>
-        <span class="pick">Organic whole milk</span>
-        <p>Milk is most of the liquid in these doughs, so its flavor carries right into the crumb. Whole milk makes a more flavorful bread than low-fat milk, but choose what fits your diet.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="art" aria-hidden="true"><svg viewBox="0 0 140 110">
-        <path class="wh" d="M22 78 C22 58 44 48 70 50 C96 48 118 58 118 78 C118 94 96 102 70 102 C44 102 22 94 22 78 Z"/>
-        <circle cx="70" cy="76" r="18" class="yk"/>
-        <path class="ln" d="M62 70 C64 66 68 64 72 64" opacity=".5"/>
-        <path class="dg" d="M98 46 C96 30 104 14 114 14 C124 14 130 30 128 46 C126 56 120 60 113 60 C106 60 100 56 98 46 Z"/>
-      </svg></div>
-      <div>
-        <h3>Eggs</h3>
-        <span class="pick">Eggs with deep orange yolks</span>
-        <p>Orange yolks give the crumb a warm, golden color, so the bread looks as good as it tastes.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="art" aria-hidden="true"><svg viewBox="0 0 140 110">
-        <path class="bt" d="M18 74 L44 56 H120 L94 74 Z"/>
-        <path class="bt" d="M18 74 H94 V98 H18 Z"/>
-        <path class="bt" d="M94 74 L120 56 V80 L94 98 Z"/>
-        <path class="ln" d="M60 74 V98" opacity=".4"/>
-      </svg></div>
-      <div>
-        <h3>Butter</h3>
-        <span class="pick">European-style butter, salted or unsalted</span>
-        <p>A rich, European-style butter gives bread a fuller, more fragrant flavor. Salted or unsalted both work: butter doesn’t contain much salt, so it barely changes the dough. Bunny buys Kerrygold salted.</p>
-      </div>
-    </div>
+    <h2>From bagels to bread</h2>
+    <p>Bagels led to loaves, and loaves led to all kinds of bread. Before long came the idea of selling some, and milk bread quickly became the customer favorite.</p>
   </section>
 
   <section>
-    <h2>Where it matters less</h2>
-    <div class="plain">
-      <p><b>Sugar and salt.</b> Bunny hasn’t found a meaningful difference between brands here, so use whatever you have.</p>
-      <p><b>Milk powder.</b> It’s optional in these recipes and used in small amounts, so any brand works.</p>
-      <p><b>Sesame seeds.</b> They’re only for decoration.</p>
-    </div>
+    <h2>These days</h2>
+    <p>Bread comes easily now. Sourdough still flops now and then, but not often. The recipes that earn their place end up here, tested and adjusted along the way.</p>
+    <figure class="scene" style="margin-left:0;margin-right:0">
+      <svg viewBox="0 0 420 210" role="img" aria-label="Bunny hands a fresh loaf to Snake, who takes a big bite.">
+        <ellipse cx="210" cy="194" rx="190" ry="11" class="pk" opacity=".45"/>
+        <!-- bunny -->
+        <path class="wh" d="M74 60 C66 30 70 8 79 8 C88 8 91 32 88 62 Z"/>
+        <path class="wh" d="M97 62 C99 34 108 14 117 18 C125 22 119 46 108 66 Z"/>
+        <path class="pk" d="M77 55 C74 36 76 20 79 20 C82 20 84 36 83 57 Z"/>
+        <path class="pk" d="M101 60 C104 40 109 28 113 30 C116 33 112 48 105 64 Z"/>
+        <path class="wh" d="M50 190 C42 160 46 126 64 108 C57 96 61 72 84 66 C106 61 122 78 118 100 C134 114 140 156 130 190 Z"/>
+        <circle cx="80" cy="88" r="3.3" class="fl"/>
+        <circle cx="103" cy="86" r="3.3" class="fl"/>
+        <path class="ln" d="M86 97 C88 101 94 101 96 97"/>
+        <ellipse cx="72" cy="99" rx="7" ry="4.5" class="pk" opacity=".6"/>
+        <ellipse cx="111" cy="97" rx="7" ry="4.5" class="pk" opacity=".6"/>
+        <!-- paw holding loaf out -->
+        <path class="wh" d="M120 132 C134 128 146 130 152 136 C146 144 132 146 122 144 Z"/>
+        <!-- loaf with a bite taken -->
+        <path class="cr" d="M150 160 V128 C150 116 158 108 168 108 C174 108 178 111 181 115 C185 105 193 100 202 100 C212 100 220 106 223 114 A12 12 0 0 0 226 138 V160 Z"/>
+        <path class="sw" d="M166 120 C160 122 159 130 165 132 M200 110 C193 113 192 122 199 124"/>
+        <path class="dash" d="M176 92 C171 82 180 76 176 66 M204 86 C199 76 208 70 204 60"/>
+        <g class="fl" opacity=".55"><circle cx="236" cy="150" r="2"/><circle cx="242" cy="160" r="1.6"/><circle cx="232" cy="166" r="1.8"/><circle cx="246" cy="146" r="1.3"/></g>
+        <!-- snake, chomping -->
+        <path class="lf" d="M282 190 C274 174 290 162 318 162 C348 162 376 170 380 182 C384 196 358 198 330 196 C304 194 286 200 282 190 Z"/>
+        <path class="lf" d="M300 164 C294 148 310 138 332 138 C352 138 364 148 360 158 C356 168 334 166 320 165 C310 164 304 170 300 164 Z"/>
+        <path class="lf" d="M304 146 C300 136 292 130 284 128 L292 116 C306 118 326 130 330 142 Z"/>
+        <path class="lf" d="M258 112 C260 96 276 88 294 92 C310 96 316 112 308 124 C300 136 280 138 268 132 C262 128 258 122 258 112 Z"/>
+        <path d="M259 106 L284 114 L262 124 C258 118 258 112 259 106 Z" fill="#7A3A2E" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="290" cy="103" r="3.3" class="fl"/>
+        <ellipse cx="298" cy="118" rx="6" ry="4" class="pk" opacity=".6"/>
+        <path class="ln" d="M296 182 C310 186 330 186 346 182" opacity=".45"/>
+      </svg>
+      <figcaption>Bunny bakes. Snake eats.</figcaption>
+    </figure>
   </section>
 
-
-  <footer><a href="./">Back to all recipes</a> · <a href="about.html">About</a></footer>
+  <footer><a href="./">Back to all recipes</a> · <a href="guide.html">Ingredient guide</a></footer>
 </div>
 </body>
 </html>
