@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sourdough Discard Cinnamon Rolls — Bunny &amp; Snake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA; --bean:#7A4320; --beanlt:#B5763F; --berry:#F7E9CC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22; --bean:#9A5A2E; --beanlt:#C88A52; --berry:#E9D7B2;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22; --bean:#9A5A2E; --beanlt:#C88A52; --berry:#E9D7B2;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;margin-bottom:48px}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:900;letter-spacing:-.02em}
+.hero p.lede{font-size:1.15rem;color:var(--soft);max-width:34ch;margin:14px 0 22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column}
+.facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
+.facts span{font-size:.88rem;color:var(--soft)}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+.hero-art.photo{padding:0;overflow:hidden}
+.hero-art.photo img{display:block;width:100%;height:auto}
+
+/* layout */
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--paper);border-radius:22px;padding:22px}
+aside h2{font-size:1.5rem;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .92rem Figtree,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.step button{width:36px;height:36px;border:0;background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;border-radius:999px}
+.step output{min-width:78px;text-align:center;font-weight:600;font-size:.95rem}
+button:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.amt{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+td small{display:block;color:var(--soft);font-size:.82rem;line-height:1.35}
+tr.held td:first-child::after{content:" · add later";color:var(--crust);font-size:.8rem;font-weight:600}
+.pan{margin-top:14px;font-size:.92rem;color:var(--soft)}
+.pan b{color:var(--ink)}
+
+/* steps */
+.phase{margin-bottom:34px}
+.phase h2{font-size:1.9rem;margin-bottom:6px}
+.phase > p{color:var(--soft);margin:0 0 16px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s var(--start,0)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:190px 1fr;gap:20px;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
+.art{background:var(--bg);border-radius:14px;padding:6px;align-self:start}
+.txt h3{font-size:1.25rem;display:flex;gap:10px;align-items:baseline}
+.txt h3::before{content:counter(s);font-size:.95rem;color:var(--paper);background:var(--crust);min-width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+.txt p{margin:8px 0 0}
+.time{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+.tip{margin-top:12px;background:var(--tip);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.tip b{color:var(--crustdk)}
+.done{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--soft);cursor:pointer;width:fit-content}
+.done input{width:18px;height:18px;accent-color:var(--crust)}
+li.is-done{opacity:.55}
+.note-added{font-size:.9rem;color:var(--soft);font-style:italic}
+.reset{border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .9rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;cursor:pointer}
+.pancare{margin-bottom:40px}
+.care{background:var(--paper);border-radius:22px;padding:22px 24px}
+.care h3{font-size:1.15rem;margin-top:14px}
+.care h3:first-of-type{margin-top:0}
+.care p{margin:6px 0 0}
+.care .warn{margin-top:14px;background:var(--tip);border-radius:12px;padding:10px 14px}
+.care .warn b{color:var(--crustdk)}
+footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  aside{position:static}
+}
+@media (max-width:560px){
+  ol.steps li{grid-template-columns:1fr}
+  .art{max-width:260px}
+}
+@media print{
+  body{background:#fff}
+  .ctrl,.done,.reset{display:none}
+  aside{position:static}
+  ol.steps li{break-inside:avoid}
+}
+.bn{fill:var(--bean);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bd{fill:var(--beanlt)}
+.wh{stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.brand a,.txt a,aside a{color:inherit}
+.brand a{text-decoration:none}
+.brand a:hover{color:var(--crustdk)}
+aside h3{font-size:1.1rem;margin:18px 0 4px}
+aside h3:first-of-type{margin-top:0}
+.br{fill:var(--berry);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.art.photo{padding:0;overflow:hidden}
+.art.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.source{font-size:.92rem;color:var(--soft);margin:10px 0 22px;max-width:42ch}
+.source a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="../">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</div>
+
+  <header class="hero">
+    <div>
+      <h1>Cinnamon Rolls</h1>
+      <p class="lede">Soft, tender rolls made with sourdough discard for a gentle tang, swirled with buttery brown sugar and cinnamon.</p>
+      <p class="source">Adapted from <a href="https://amybakesbread.com/sourdough-discard-cinnamon-rolls/" target="_blank" rel="noopener">Amy Coyne’s sourdough discard cinnamon rolls</a> on Amy Bakes Bread, then tested and adjusted in Bunny’s kitchen.</p>
+      <ul class="facts">
+        <li><b id="f-rolls">9 rolls</b><span>yield</span></li>
+        <li><b>110–115 g</b><span>per roll</span></li>
+        <li><b>350°F</b><span>bake about 25 min</span></li>
+      </ul>
+    </div>
+    <div class="hero-art photo">
+      <img src="../images/cinnamon-rolls-baked.jpg" alt="Two round pans of golden baked cinnamon rolls on a cooling rack">
+
+    </div>
+  </header>
+
+  <div class="cols">
+    <aside>
+      <h2>Ingredients</h2>
+      <div class="ctrl">
+        <div class="step" role="group" aria-label="Number of rolls">
+          <button type="button" id="minus" aria-label="Fewer rolls">−</button>
+          <output id="rolls" aria-live="polite">9 rolls</output>
+          <button type="button" id="plus" aria-label="More rolls">+</button>
+        </div>
+      </div>
+      <h3>Dough</h3>
+      <table id="t-dough"></table>
+      <h3>Filling</h3>
+      <table id="t-fill"></table>
+      <h3>Before baking</h3>
+      <table id="t-cream"></table>
+      <h3>Topping: pick one</h3>
+      <p class="pan" style="margin-top:0"><b>Option 1: Vanilla icing</b></p>
+      <table id="t-icing"></table>
+      <p class="pan"><b>Option 2: Cream cheese frosting</b><br>From Sally’s Baking</p>
+      <table id="t-frost"></table>
+      <p class="pan"><a href="../guide.html#cinnamon">Which cinnamon? →</a> Ceylon vs. Saigon in the ingredient guide.</p>
+    </aside>
+
+    <main>
+      <section class="phase">
+        <h2>Make the dough</h2>
+        <ol class="steps" style="--start:0">
+          <li data-id="1">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M52 70 C56 48 80 40 100 40 C120 40 144 48 148 70 Z"/>
+              <g class="fl" opacity=".35"><circle cx="82" cy="56" r="2.4"/><circle cx="104" cy="50" r="2"/><circle cx="122" cy="58" r="2.4"/></g>
+            </svg></div>
+            <div class="txt">
+              <h3>Mix</h3>
+              <p>Combine everything for the dough except the butter and salt: cold milk, sourdough discard, yeast, sugar, egg, and bread flour. Mix until no dry flour remains.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="2">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="dg" d="M40 108 C30 80 60 56 100 56 C140 56 170 80 160 108 Z"/>
+              <path class="bt" d="M128 40 L152 32 L160 50 L136 58 Z"/>
+              <g class="fl"><circle cx="64" cy="36" r="2"/><circle cx="72" cy="30" r="2"/><circle cx="70" cy="40" r="2"/></g>
+            </svg></div>
+            <div class="txt">
+              <h3>Knead in butter and salt</h3>
+              <p>Knead until the dough forms a rough film when stretched. Add the butter and salt and keep kneading until the dough is smooth and stretchy.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="3">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M40 70 C42 34 72 22 100 22 C128 22 158 34 160 70 Z"/>
+              <path class="dash" d="M28 40 C22 30 32 24 26 14 M176 40 C170 30 180 24 174 14"/>
+            </svg></div>
+            <div class="txt">
+              <h3>First rise</h3>
+              <p>Cover the dough and let it rise somewhere warm until about doubled. Make the filling while you wait.</p>
+              <span class="time">About 1–2 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Fill and shape</h2>
+        <ol class="steps" style="--start:3">
+          <li data-id="4">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M44 64 H156 L148 118 C147 124 142 128 136 128 H64 C58 128 53 124 52 118 Z"/>
+              <path class="br" style="fill:var(--bean)" d="M60 66 C66 50 134 50 140 66 Z"/>
+              <path class="ln" d="M150 20 L116 58"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Mix the filling</h3>
+              <p>Stir the softened butter with the brown sugar, cinnamon, and flour or cornstarch until smooth.</p>
+              <div class="tip"><b>Why the flour?</b> A little flour or cornstarch keeps the filling from oozing out as the rolls bake.</div>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="5">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="20" y="34" width="160" height="80" rx="8" class="dg"/>
+              <rect x="26" y="40" width="148" height="68" rx="5" style="fill:var(--beanlt)" opacity=".85"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Roll out and fill</h3>
+              <p>Lightly dust the counter and the dough with flour. Roll the dough into a large rectangle, about 16 × 12 inches. Spread the filling evenly all the way to the edges.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="6">
+            <div class="art photo"><img src="../images/cinnamon-rolls-strips.jpg" alt="A sheet of dough spread with cinnamon sugar and cut into long strips"></div>
+            <div class="txt">
+              <h3>Cut, then roll up</h3>
+              <p>Trim off the uneven edges with a pizza cutter, then cut the sheet into <b id="s-cut">9 strips</b> of about 110–115 g each. Roll up each strip into a spiral.</p>
+              <div class="tip"><b>Cut first, roll second.</b> Cutting strips before rolling gives every roll clean, even sides, without the squashed edges you get from slicing a log.</div>
+              <img src="../images/cinnamon-rolls-single.jpg" alt="A single rolled cinnamon roll with a neat spiral" style="display:block;width:160px;max-width:100%;border-radius:14px;margin-top:10px">
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="7">
+            <div class="art photo"><img src="../images/cinnamon-rolls-shaped.jpg" alt="Shaped cinnamon rolls arranged in two parchment-lined round pans"></div>
+            <div class="txt">
+              <h3>Pan and final proof</h3>
+              <p>Arrange the rolls spiral side up in a parchment-lined pan. Cover and let them rise until puffy, about doubled, and just touching each other. Preheat the oven to 350°F toward the end.</p>
+              <span class="time">About 1 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Bake</h2>
+        <ol class="steps" style="--start:7">
+          <li data-id="8">
+            <div class="art photo"><img src="../images/cinnamon-rolls-proofed.jpg" alt="Proofed cinnamon rolls in round pans, ready to bake"></div>
+            <div class="txt">
+              <h3>Drizzle and bake</h3>
+              <p>Just before baking, drizzle a little heavy cream over each roll, just under 1 tablespoon each. Bake at 350°F until the tops are light golden.</p>
+              <div class="tip"><b>Stop at light golden.</b> If the rolls brown all over, they’ll be dry. Pale gold on top means soft and tender inside.</div>
+              <span class="time">About 25 min at 350°F</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="9">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <ellipse cx="88" cy="74" rx="62" ry="56" class="mt"/>
+              <circle cx="88" cy="72" r="44" class="cr"/>
+              <path d="M88 72 m-4 0 a4 4 0 1 0 8 0 a10 10 0 1 0 -20 0 a17 17 0 1 0 34 0 a24 24 0 1 0 -48 0 a31 31 0 1 0 62 0" fill="none" stroke="#6B3A1C" stroke-width="3.2" stroke-linecap="round"/>
+              <g fill="none" stroke="#FFFBF2" stroke-width="3" stroke-linecap="round" opacity=".95">
+                <path d="M54 50 C62 44 70 56 78 50 C86 44 94 56 102 50 C110 44 116 52 120 50"/>
+                <path d="M48 66 C58 60 66 72 76 66 C86 60 94 72 104 66 C114 60 122 70 128 66"/>
+                <path d="M48 82 C58 76 66 88 76 82 C86 76 94 88 104 82 C114 76 122 86 128 82"/>
+                <path d="M56 98 C64 92 72 104 80 98 C88 92 96 104 104 98 C112 92 118 100 122 98"/>
+              </g>
+              <path d="M150 34 C150 26 158 22 166 22 C174 22 182 26 182 34 L178 52 C177 56 172 58 166 58 C160 58 155 56 154 52 Z" class="mt"/>
+              <path d="M152 32 C158 28 174 28 180 32 C174 36 158 36 152 32 Z" fill="#FFFBF2"/>
+              <path d="M172 30 L190 8" class="ln"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Cool and top</h3>
+              <p>Let the rolls cool for a few minutes, then add your topping.</p>
+              <p><b>Vanilla icing:</b> whisk the sifted powdered sugar, milk or cream, and vanilla until smooth, then drizzle over the rolls. Start with 3 tablespoons of liquid and add more for a thinner icing.</p>
+              <p><b>Cream cheese frosting:</b> beat the cream cheese and butter until smooth, then beat in the powdered sugar and vanilla until creamy. Spread over the warm rolls.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        <span><a href="../" style="color:inherit">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</span>
+        <button type="button" class="reset" id="reset">Clear checkmarks</button>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  var BASE = 9, MIN = 9, MAX = 36;
+  var T = {
+    "t-dough": [
+      {name:"Whole milk", g:150, note:"Cold"},
+      {name:"Sourdough discard", g:200, note:"100% hydration"},
+      {name:"Instant yeast", yeast:true},
+      {name:"Sugar", g:60},
+      {name:"Egg", egg:1},
+      {name:"Bread flour", g:375},
+      {name:"Butter, softened", g:60, held:true, note:"Salted or unsalted"},
+      {name:"Salt", g:7, held:true},
+      {name:"Flour, for dusting", txt:"a little"}
+    ],
+    "t-fill": [
+      {name:"Unsalted butter, softened", g:60},
+      {name:"Brown sugar", g:120},
+      {name:'Ground cinnamon', g:7, note:'<a href="../guide.html#cinnamon">Ceylon or Saigon?</a>'},
+      {name:"All-purpose flour or cornstarch", g:5}
+    ],
+    "t-cream": [
+      {name:"Heavy cream", tbsp:[0.75,1], perRoll:true, note:"For drizzling, just under 1 tbsp per roll"}
+    ],
+    "t-icing": [
+      {name:"Powdered sugar, sifted", g:120},
+      {name:"Milk or heavy cream", tbsp:[3,4]},
+      {name:"Vanilla extract or vanilla bean paste", tsp1:1}
+    ],
+    "t-frost": [
+      {name:"Full-fat cream cheese", g:113, note:"Block style, softened"},
+      {name:"Unsalted butter", g:28, note:"Softened"},
+      {name:"Powdered sugar", g:80},
+      {name:"Vanilla extract or vanilla bean paste", tsp1:1}
+    ]
+  };
+  var rolls = BASE;
+  try{ var st = JSON.parse(localStorage.getItem("cr-settings")||"{}"); if(st.rolls>=MIN && st.rolls<=MAX && st.rolls%9===0) rolls = st.rolls; }catch(e){}
+
+  function quarter(x){ var q = Math.round(x*4)/4, w = Math.floor(q), f = q-w;
+    var fr = f===0.25?"¼":f===0.5?"½":f===0.75?"¾":"";
+    return (w>0?w:"")+fr || "0"; }
+
+  function render(){
+    var k = rolls/BASE;
+    Object.keys(T).forEach(function(id){
+      var rows = "";
+      T[id].forEach(function(i){
+        var amt, note = i.note || "";
+        if(i.txt) amt = i.txt;
+        else if(i.egg) amt = quarter(i.egg*k)+" large";
+        else if(i.tbsp && i.perRoll){ amt = "scant "+rolls+" tbsp"; }
+        else if(i.tbsp){ amt = quarter(i.tbsp[0]*k)+"–"+quarter(i.tbsp[1]*k)+" tbsp"; }
+        else if(i.tsp1){ amt = quarter(i.tsp1*k)+" tsp"; }
+        else if(i.yeast){ amt = quarter(1.5*k)+" tsp"; note = "Sweet-dough yeast, or "+quarter(2*k)+" tsp regular instant yeast"; }
+        else amt = Math.round(i.g*k)+" g";
+        rows += '<tr'+(i.held?' class="held"':'')+'><td>'+i.name+(note?'<small>'+note+'</small>':'')+'</td><td class="amt">'+amt+'</td></tr>';
+      });
+      document.getElementById(id).innerHTML = rows;
+    });
+    var R = rolls+" rolls";
+    document.getElementById("rolls").textContent = R;
+    document.getElementById("f-rolls").textContent = R;
+    document.getElementById("s-cut").textContent = rolls+" strips";
+    document.getElementById("minus").disabled = rolls<=MIN;
+    document.getElementById("plus").disabled = rolls>=MAX;
+    try{ localStorage.setItem("cr-settings", JSON.stringify({rolls:rolls})); }catch(e){}
+  }
+  document.getElementById("minus").onclick = function(){ if(rolls>MIN){rolls-=9;render();} };
+  document.getElementById("plus").onclick = function(){ if(rolls<MAX){rolls+=9;render();} };
+
+  var KEY = "cr-done", done = {};
+  try{ done = JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ done = {}; }
+  var items = document.querySelectorAll("ol.steps li");
+  items.forEach(function(li){
+    var cb = li.querySelector("input"), id = li.dataset.id;
+    cb.checked = !!done[id]; li.classList.toggle("is-done", cb.checked);
+    cb.addEventListener("change", function(){
+      done[id] = cb.checked; li.classList.toggle("is-done", cb.checked);
+      try{ localStorage.setItem(KEY, JSON.stringify(done)); }catch(e){}
+    });
+  });
+  document.getElementById("reset").onclick = function(){
+    done = {}; items.forEach(function(li){ li.querySelector("input").checked=false; li.classList.remove("is-done"); });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  };
+  render();
+})();
+</script>
+</body>
+</html>
