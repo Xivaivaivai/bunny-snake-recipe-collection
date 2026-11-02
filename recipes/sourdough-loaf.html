@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sourdough Country Loaf — Bunny &amp; Snake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F8; --paper:#FFFFFF; --ink:#22304A; --soft:#5A6680; --line:#D5DDE7;
+  --dough:#F7E9CC; --crust:#C98236; --crustdk:#9C5E22; --butter:#F3D37E; --pink:#EFB3AB;
+  --steel:#C9D3DE; --tip:#FDF3DA; --bean:#C98236; --beanlt:#F3D37E; --berry:#F7E9CC;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+    --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+    --steel:#56657A; --tip:#2A2A22; --bean:#D8954B; --beanlt:#E7C466; --berry:#E9D7B2;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --paper:#1C2431; --ink:#ECE7DC; --soft:#A7B0C0; --line:#2E394A;
+  --dough:#E9D7B2; --crust:#D8954B; --crustdk:#B37431; --butter:#E7C466; --pink:#D99A92;
+  --steel:#56657A; --tip:#2A2A22; --bean:#D8954B; --beanlt:#E7C466; --berry:#E9D7B2;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",Figtree,system-ui,sans-serif;margin:0;line-height:1.15}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 20px 64px}
+svg{display:block;max-width:100%;height:auto}
+.ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg{fill:var(--dough);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.cr{fill:var(--crust);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bt{fill:var(--butter);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.mt{fill:var(--steel);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.pk{fill:var(--pink)}
+.dash{fill:none;stroke:var(--soft);stroke-width:1.8;stroke-dasharray:4 5;stroke-linecap:round}
+.fl{fill:var(--ink)}
+.sw{fill:none;stroke:var(--crustdk);stroke-width:2;stroke-linecap:round}
+
+/* hero */
+.brand{font-size:.9rem;color:var(--soft);margin-bottom:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;margin-bottom:48px}
+.hero h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:900;letter-spacing:-.02em}
+.hero p.lede{font-size:1.15rem;color:var(--soft);max-width:34ch;margin:14px 0 22px}
+.facts{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0;padding:0;list-style:none}
+.facts li{display:flex;flex-direction:column}
+.facts b{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.35rem;font-weight:700}
+.facts span{font-size:.88rem;color:var(--soft)}
+.hero-art{background:var(--paper);border-radius:28px;padding:18px}
+.hero-art.photo{padding:0;overflow:hidden}
+.hero-art.photo img{display:block;width:100%;height:auto}
+
+/* layout */
+.cols{display:grid;grid-template-columns:340px 1fr;gap:36px;align-items:start}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);background:var(--paper);border-radius:22px;padding:22px}
+aside h2{font-size:1.5rem;margin-bottom:14px}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seg{display:inline-flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:var(--ink);font:600 .92rem Figtree,sans-serif;padding:7px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.step{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px}
+.step button{width:36px;height:36px;border:0;background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;border-radius:999px}
+.step output{min-width:78px;text-align:center;font-weight:600;font-size:.95rem}
+button:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.amt{text-align:right;font-weight:600;white-space:nowrap;padding-left:12px}
+td small{display:block;color:var(--soft);font-size:.82rem;line-height:1.35}
+tr.held td:first-child::after{content:" · add later";color:var(--crust);font-size:.8rem;font-weight:600}
+.pan{margin-top:14px;font-size:.92rem;color:var(--soft)}
+.pan b{color:var(--ink)}
+
+/* steps */
+.phase{margin-bottom:34px}
+.phase h2{font-size:1.9rem;margin-bottom:6px}
+.phase > p{color:var(--soft);margin:0 0 16px}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s var(--start,0)}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:190px 1fr;gap:20px;background:var(--paper);border-radius:22px;padding:18px;margin-bottom:14px}
+.art{background:var(--bg);border-radius:14px;padding:6px;align-self:start}
+.txt h3{font-size:1.25rem;display:flex;gap:10px;align-items:baseline}
+.txt h3::before{content:counter(s);font-size:.95rem;color:var(--paper);background:var(--crust);min-width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+.txt p{margin:8px 0 0}
+.time{display:inline-block;margin-top:10px;font-size:.85rem;font-weight:600;color:var(--crustdk);background:var(--tip);padding:3px 10px;border-radius:999px}
+.tip{margin-top:12px;background:var(--tip);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.tip b{color:var(--crustdk)}
+.done{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--soft);cursor:pointer;width:fit-content}
+.done input{width:18px;height:18px;accent-color:var(--crust)}
+li.is-done{opacity:.55}
+.note-added{font-size:.9rem;color:var(--soft);font-style:italic}
+.reset{border:1.5px solid var(--line);background:transparent;color:var(--ink);font:600 .9rem Figtree,sans-serif;padding:8px 16px;border-radius:999px;cursor:pointer}
+.pancare{margin-bottom:40px}
+.care{background:var(--paper);border-radius:22px;padding:22px 24px}
+.care h3{font-size:1.15rem;margin-top:14px}
+.care h3:first-of-type{margin-top:0}
+.care p{margin:6px 0 0}
+.care .warn{margin-top:14px;background:var(--tip);border-radius:12px;padding:10px 14px}
+.care .warn b{color:var(--crustdk)}
+footer{margin-top:40px;color:var(--soft);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  aside{position:static}
+}
+@media (max-width:560px){
+  ol.steps li{grid-template-columns:1fr}
+  .art{max-width:260px}
+}
+@media print{
+  body{background:#fff}
+  .ctrl,.done,.reset{display:none}
+  aside{position:static}
+  ol.steps li{break-inside:avoid}
+}
+.bn{fill:var(--bean);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.bd{fill:var(--beanlt)}
+.wh{stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.brand a,.txt a,aside a{color:inherit}
+.brand a{text-decoration:none}
+.brand a:hover{color:var(--crustdk)}
+aside h3{font-size:1.1rem;margin:18px 0 4px}
+aside h3:first-of-type{margin-top:0}
+.br{fill:var(--berry);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
+.art.photo{padding:0;overflow:hidden}
+.art.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.source{font-size:.92rem;color:var(--soft);margin:10px 0 22px;max-width:42ch}
+.source a{color:inherit}
+.calc{display:grid;gap:14px;margin:4px 0 18px}
+.knob label{display:flex;justify-content:space-between;align-items:baseline;font-size:.92rem;font-weight:600}
+.knob label output{font-family:"Zen Maru Gothic",Figtree,sans-serif;font-size:1.05rem;color:var(--crustdk)}
+.knob small{display:block;color:var(--soft);font-size:.8rem;font-weight:400;margin-top:2px}
+.knob input[type=range]{width:100%;accent-color:var(--crust);margin-top:6px}
+.numrow{display:flex;align-items:center;gap:8px;margin-top:6px}
+.numrow input{width:100%;font:inherit;font-size:1rem;padding:6px 10px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.numrow input:focus-visible{outline:3px solid var(--crust);outline-offset:1px}
+.numrow span{color:var(--soft);font-size:.9rem}
+.lvl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:999px;margin-right:4px;vertical-align:2px}
+.lvl-easy{background:#E3F0DA;color:#3F6B2A}
+.lvl-medium{background:var(--tip);color:var(--crustdk)}
+.lvl-hard{background:#F6DAD6;color:#9A3328}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lvl-easy{background:#2C3A24;color:#B5D69E}:root:not([data-theme="light"]) .lvl-hard{background:#3E2523;color:#F0A69C}}
+.pick{margin-top:6px;font:inherit;font-size:.8rem;font-weight:600;color:var(--crustdk);background:none;border:1.5px dashed var(--crust);border-radius:999px;padding:3px 10px;cursor:pointer}
+.pick.on{background:var(--tip);border-style:solid}
+.pick:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+.ratios{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 6px}
+.ratio{font:inherit;font-size:.9rem;font-weight:600;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:999px;padding:5px 14px;cursor:pointer}
+.ratio.on{background:var(--tip);border-color:var(--crust);color:var(--crustdk)}
+.ratio:focus-visible{outline:3px solid var(--crust);outline-offset:2px}
+.ratio-note{font-size:.9rem;color:var(--soft);margin:4px 0 8px}
+table.mini{max-width:260px;margin:0 0 10px}
+.sum{font-size:.85rem;color:var(--soft);margin:8px 0 0;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><a href="../">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</div>
+
+  <header class="hero">
+    <div>
+      <h1>Sourdough Country Loaf</h1>
+      <p class="lede">A crackly, open-crumbed loaf leavened only with levain. Set the loaf size, hydration, and levain to what you like, and the recipe works out the numbers.</p>
+      <p class="source">Adapted from <a href="https://www.xiaohongshu.com/user/profile/5909c75e5e87e708c40fb2b1?channel_type=web_user_page&amp;parent_page_channel_type=web_user_board&amp;xsec_token=ABet2FRob13wdbVFWPeUTH0ch8l4YGUSwQJgRGl8r9bFQ=&amp;xsec_source=pc_user" target="_blank" rel="noopener">是Amanda吖’s sourdough on Xiaohongshu</a>, then tested and adjusted in Bunny’s kitchen.</p>
+      <ul class="facts">
+        <li><b id="f-loaves">1 loaf</b><span id="f-weight">700 g dough each</span></li>
+        <li><b>Overnight</b><span>cold proof in the fridge</span></li>
+        <li><b>500°F</b><span>then 450°F, about 30–34 min</span></li>
+      </ul>
+    </div>
+    <div class="hero-art photo">
+      <img src="../images/sourdough-loaves.jpg" alt="Two sourdough loaves on a cooling rack, one with a wheat-leaf scoring pattern and an open ear">
+    </div>
+  </header>
+
+  <div class="cols">
+    <aside>
+      <h2>Your loaf</h2>
+      <div class="calc">
+        <div class="knob">
+          <label for="weight">Dough per loaf <output id="o-weight">700 g</output></label>
+          <div class="numrow"><input type="number" id="weight" min="100" step="50" value="700" inputmode="numeric"><span>g</span></div>
+          <small>About 10–15% of the weight bakes off. Any size you like, from 100 g up.</small>
+          <button type="button" class="pick" data-k="weight" data-v="700">Bunny’s choice: 700 g</button>
+        </div>
+        <div class="knob">
+          <label for="hyd">Hydration <span><span class="lvl" id="lvl-hyd"></span> <output id="o-hyd">78%</output></span></label>
+          <input type="range" id="hyd" min="72" max="100" step="1" value="78">
+          <small>Lower is easier to handle, so start lower if you’re new to sourdough.</small>
+          <button type="button" class="pick" data-k="hyd" data-v="78">Bunny’s choice: 78%</button>
+        </div>
+        <div class="knob">
+          <label for="lev">Levain <output id="o-lev">23%</output></label>
+          <input type="range" id="lev" min="20" max="30" step="1" value="23">
+          <small>More levain ferments faster. Going over 30% isn’t recommended.</small>
+          <button type="button" class="pick" data-k="lev" data-v="23">Bunny’s choice: 23%</button>
+        </div>
+        <div class="knob">
+          <label for="ww">Whole wheat <span><span class="lvl" id="lvl-ww">easy</span> <output id="o-ww">15%</output></span></label>
+          <input type="range" id="ww" min="0" max="100" step="1" value="15">
+          <small>Share of the total flour. More whole wheat makes a denser, thirstier dough that’s harder to handle.</small>
+          <button type="button" class="pick" data-k="ww" data-v="15">Bunny’s choice: 15%</button>
+        </div>
+        <div class="knob">
+          <label>Loaves</label>
+          <div class="ctrl" style="margin:6px 0 0">
+            <div class="step" role="group" aria-label="Number of loaves">
+              <button type="button" id="minus" aria-label="Fewer loaves">−</button>
+              <output id="loaves" aria-live="polite">1 loaf</output>
+              <button type="button" id="plus" aria-label="More loaves">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Ingredients</h2>
+      <h3>Levain</h3>
+      <table id="t-lev"></table>
+      <h3>Main dough</h3>
+      <table id="t-main"></table>
+      <p class="sum" id="sum"></p>
+      <p class="pan">Levain here means an active starter at 100% hydration, made with equal weights of flour and water.</p>
+    </aside>
+
+    <main>
+      <section class="phase">
+        <h2>Day 1: levain and dough</h2>
+        <ol class="steps" style="--start:0">
+          <li data-id="1">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="ln" d="M22 24 V118 C22 124 26 128 32 128 H78 C84 128 88 124 88 118 V24"/>
+              <path class="dg" d="M23 127 V68 C30 60 44 52 55 52 C66 52 80 60 87 68 V127 Z" style="stroke:none"/>
+              <path class="ln" d="M23 68 C30 60 44 52 55 52 C66 52 80 60 87 68"/>
+              <path class="ln" d="M112 24 V118 C112 124 116 128 122 128 H168 C174 128 178 124 178 118 V24"/>
+              <path class="dg" d="M113 127 V44 C122 50 134 54 145 54 C156 54 168 50 177 44 V127 Z" style="stroke:none"/>
+              <path class="ln" d="M113 44 C122 50 134 54 145 54 C156 54 168 50 177 44"/>
+              <text x="55" y="16" text-anchor="middle" font-size="12" font-family="Figtree,sans-serif" font-weight="600" fill="var(--soft)">not yet</text>
+              <text x="145" y="16" text-anchor="middle" font-size="12" font-family="Figtree,sans-serif" font-weight="700" fill="var(--crustdk)">ready</text>
+            </svg></div>
+            <div class="txt">
+              <h3>Build the levain</h3>
+              <p>Feed your starter with flour and water to make <b id="s-lev">90 g</b> of active levain. Pick a feeding ratio (starter : flour : water) that fits your schedule:</p>
+              <div class="ratios" role="group" aria-label="Feeding ratio">
+                <button type="button" class="ratio" data-a="1">1 : 1 : 1</button>
+                <button type="button" class="ratio" data-a="2">1 : 2 : 2</button>
+                <button type="button" class="ratio" data-a="6">1 : 6 : 6</button>
+              </div>
+              <p id="s-ratio-note" class="ratio-note"></p>
+              <table class="mini" id="t-feed"></table>
+              <p>To tell when it’s ready, look at the top surface where it meets the side of the jar:</p>
+              <p><b>Not ready yet:</b> the surface is domed, curving up from the jar wall toward a higher middle. It’s still rising.</p>
+              <p><b>Ready:</b> the surface has flattened out, or the middle has just started to dip so the edges at the jar wall sit a little higher. It has reached its peak.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="2">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M52 70 C56 50 80 42 100 42 C120 42 144 50 148 70 Z"/>
+              <path d="M150 22 L156 30 M156 22 L150 30 M153 20 V32 M147 26 H159" stroke="var(--soft)" stroke-width="2" stroke-linecap="round"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Mix flour and water, then chill</h3>
+              <p>Mix the flours and water until no dry flour remains. Cover and rest it in the fridge.</p>
+              <div class="tip"><b>Very wet dough?</b> Above about 80% hydration, hold back a little of the water here and add it in the next step with the salt and levain.</div>
+              <span class="time">At least 1 hr in the fridge</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="3">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="dg" d="M50 112 C40 84 66 58 100 58 C134 58 160 84 150 112 Z"/>
+              <path class="ln" d="M82 78 C90 72 110 72 118 78" opacity=".35"/>
+              <g class="fl"><circle cx="64" cy="34" r="2"/><circle cx="72" cy="28" r="2"/><circle cx="70" cy="38" r="2"/></g>
+              <path class="dg" d="M128 36 C128 26 136 20 146 20 C156 20 162 26 162 36 Z"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Add levain and salt</h3>
+              <p>Add the levain and salt to the chilled dough and knead until smooth, then round it into a ball. A stand mixer makes this easy, but kneading by hand works too.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="4">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="mt" d="M30 70 H170 L156 120 C154 126 150 128 144 128 H56 C50 128 46 126 44 120 Z"/>
+              <path class="dg" d="M52 70 C56 50 80 42 100 42 C120 42 144 50 148 70 Z"/>
+              <path class="dg" d="M100 44 C102 30 106 16 112 8 C120 14 118 30 110 46 Z"/>
+              <path class="ln" d="M132 20 C142 26 146 38 140 48 M140 48 L134 44 M140 48 L142 40" opacity=".6"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Stretch and fold, then coil folds</h3>
+              <p><b>After 30–40 minutes,</b> do one set of stretch and folds: with wet hands, lift one side of the dough, stretch it up, and fold it over. Turn the bowl and repeat on all four sides.</p>
+              <p><b>Then, once an hour,</b> do a coil fold, three times in total: lift the dough from the middle with both hands and let the ends fold underneath. Turn the bowl and repeat.</p>
+              <p><b>One hour after the third coil fold,</b> it’s time to pre-shape.</p>
+              <span class="time">1 stretch and fold + 3 coil folds, then 1 hr rest</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="5">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <path class="dg" d="M40 112 C34 86 62 62 100 62 C138 62 166 86 160 112 Z"/>
+              <path class="ln" d="M56 112 C64 104 72 102 80 106 M144 112 C136 104 128 102 120 106" opacity=".55"/>
+              <path class="ln" d="M60 124 C70 118 80 116 90 118 M140 124 C130 118 120 116 110 118 M90 118 L84 114 M90 118 L84 122 M110 118 L116 114 M110 118 L116 122" opacity=".6"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Pre-shape</h3>
+              <p>Turn the dough out<span id="s-div"></span>. Tuck the edges underneath to tighten the bottom into a loose round, then cover and let it rest.</p>
+              <span class="time">Rest 1 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="6">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="24" y="30" width="72" height="80" rx="8" class="dg"/>
+              <path class="ln" d="M24 70 H40 M96 70 H80 M34 64 L40 70 L34 76 M86 64 L80 70 L86 76" opacity=".6"/>
+              <path class="mt" d="M112 64 H186 C190 64 192 68 190 72 L180 118 C178 124 174 126 168 126 H130 C124 126 120 124 118 118 L108 72 C106 68 108 64 112 64 Z" style="fill:var(--butter)"/>
+              <path class="dg" d="M120 70 C122 56 136 50 150 50 C164 50 178 56 180 70 C178 78 164 80 150 80 C136 80 122 78 120 70 Z"/>
+              <path class="ln" d="M150 54 V78" opacity=".45"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Shape</h3>
+              <p>Flip the dough over. Fold the two sides in toward the middle, then roll it up from the bottom to the top. Set it seam side up in a floured banneton and pinch the bottom and sides closed.</p>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="7">
+            <div class="art" aria-hidden="true"><svg viewBox="0 0 200 140">
+              <rect x="54" y="14" width="92" height="118" rx="10" class="mt" style="fill:var(--paper)"/>
+              <path class="ln" d="M54 56 H146"/>
+              <path class="ln" d="M64 30 V42 M64 70 V86"/>
+              <path class="dg" d="M70 112 C70 98 84 92 100 92 C116 92 130 98 130 112 Z"/>
+              <path d="M86 26 L94 34 M94 26 L86 34 M90 24 V36 M84 30 H96" stroke="var(--soft)" stroke-width="2" stroke-linecap="round"/>
+            </svg></div>
+            <div class="txt">
+              <h3>Cold proof overnight</h3>
+              <p>Cover the banneton and refrigerate overnight. The cold slows fermentation, builds flavor, and makes the dough firm and easy to score.</p>
+              <span class="time">Often 8–16 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="phase">
+        <h2>Day 2: bake</h2>
+        <ol class="steps" style="--start:7">
+          <li data-id="8">
+            <div class="art photo"><img src="../images/sourdough-scored.jpg" alt="A baked sourdough loaf with a deep curved ear and a wheat-leaf scoring pattern"></div>
+            <div class="txt">
+              <h3>Score and bake</h3>
+              <p>Turn the cold dough out onto parchment and score it with a blade. Then bake one of two ways:</p>
+              <p><b>On a pizza stone (Bunny’s way):</b> preheat the oven to 500°F with the stone inside for at least 40 minutes to an hour. Slide the loaf onto the stone and put ice cubes in a pan on the bottom of the oven to make steam. Bake at 500°F for 24 minutes, then lower to 450°F and bake another 6–10 minutes, watching the color.</p>
+              <p><b>In a Dutch oven:</b> preheat the pot in the oven. No ice needed, since the lid traps the steam. Set the loaf in the pot, cover it, and bake. Put an empty baking sheet on the rack below the pot to block extra heat from underneath.</p>
+              <div class="tip"><b>Why the sheet under a Dutch oven?</b> Cast iron conducts heat very well, so the bottom of the loaf burns easily without something to shield it. A pizza stone doesn’t have this problem.</div>
+              <div class="tip"><b>Score with purpose.</b> One long, confident cut at a shallow angle gives the loaf its “ear.” Smaller cuts around it, like the wheat leaves here, are just for decoration.</div>
+              <div class="tip"><b>These times are for a loaf of about 700 g.</b> For a much smaller or larger loaf, adjust the time at 500°F: shorter for small loaves, longer for big ones. Then finish at 450°F by color.<span id="s-size-note"></span></div>
+              <span class="time">500°F 24 min (for 700 g), then 450°F 6–10 min</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+          <li data-id="9">
+            <div class="art photo"><img src="../images/sourdough-crumb.jpg" alt="A sourdough loaf cut in half showing an open, airy crumb"></div>
+            <div class="txt">
+              <h3>Cool before cutting</h3>
+              <p>Let the loaf cool completely on a rack before slicing. The inside keeps setting as it cools, and cutting too early makes the crumb gummy.</p>
+              <span class="time">At least 1 hr</span>
+              <label class="done"><input type="checkbox"> Done</label>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <footer>
+        <span><a href="../" style="color:inherit">← All recipes</a> · Bunny &amp; Snake Sweet Cottage Baking</span>
+        <button type="button" class="reset" id="reset">Clear checkmarks</button>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  var S = {weight:700, hyd:78, lev:23, ww:15, loaves:1, ratio:2};
+  try{ var st = JSON.parse(localStorage.getItem("sd-settings")||"{}");
+    if(st.weight>=100) S.weight = st.weight;
+    if(st.hyd>=72 && st.hyd<=100) S.hyd = st.hyd;
+    if(st.lev>=20 && st.lev<=30) S.lev = st.lev;
+    if(st.ww>=0 && st.ww<=100) S.ww = st.ww;
+    if(st.loaves>=1 && st.loaves<=10) S.loaves = st.loaves;
+    if([1,2,6].indexOf(st.ratio)>=0) S.ratio = st.ratio;
+  }catch(e){}
+
+  var $ = function(id){ return document.getElementById(id); };
+  var r = Math.round;
+
+  function row(name, g, note){
+    return '<tr><td>'+name+(note?'<small>'+note+'</small>':'')+'</td><td class="amt">'+g+' g</td></tr>';
+  }
+
+  function render(){
+    var X = S.weight*S.loaves, h = S.hyd/100, p = S.lev/100, w = S.ww/100;
+    var F = X/(1+h);            // total flour
+    var L = p*F;                // levain (100% hydration)
+    var mainFlour = F - L/2;
+    var mainWater = h*F - L/2;
+    var ww = w*F;
+    var rest = mainFlour - ww;
+    var salt = 0.02*F;
+
+    $("t-lev").innerHTML = row("Active levain", r(L), "Equal parts flour and water, at its peak");
+    $("t-main").innerHTML =
+      row("Whole wheat flour", r(ww)) +
+      row("Bread flour", r(rest/2)) +
+      row("All-purpose flour", r(rest/2)) +
+      row("Water", r(mainWater)) +
+      row("Levain", r(L), "From above") +
+      row("Salt", r(salt), "About 2% of the total flour");
+    $("sum").textContent = "Total flour "+r(F)+" g · total water "+r(h*F)+" g · total dough about "+r(X)+" g";
+
+    $("o-weight").textContent = S.weight+" g";
+    $("o-hyd").textContent = S.hyd+"%";
+    var lh = $("lvl-hyd"); if(S.hyd>80){ lh.textContent = "hard"; lh.className = "lvl lvl-hard"; } else { lh.textContent = ""; lh.className = "lvl"; lh.style.display = "none"; }
+    if(S.hyd>80) lh.style.display = "";
+    $("o-lev").textContent = S.lev+"%";
+    $("o-ww").textContent = S.ww+"%";
+    var lv = S.ww<25 ? "easy" : (S.ww<=60 ? "medium" : "hard");
+    var el = $("lvl-ww"); el.textContent = lv; el.className = "lvl lvl-"+lv;
+    document.querySelectorAll(".pick").forEach(function(b){ b.classList.toggle("on", String(S[b.dataset.k])===b.dataset.v); });
+    var Lb = S.loaves+(S.loaves===1?" loaf":" loaves");
+    $("loaves").textContent = Lb;
+    $("f-loaves").textContent = Lb;
+    $("f-weight").textContent = S.weight+" g dough each";
+    $("s-lev").textContent = r(L)+" g";
+    var sn = $("s-size-note");
+    if(S.weight<500) sn.textContent = " Your loaf is "+S.weight+" g, so start checking well before 24 minutes.";
+    else if(S.weight>900) sn.textContent = " Your loaf is "+S.weight+" g, so it will likely need more than 24 minutes at 500°F.";
+    else sn.textContent = "";
+    var a = S.ratio, st0 = L/(1+2*a);
+    $("t-feed").innerHTML = row("Starter", r(st0)) + row("Flour", r(st0*a)) + row("Water", r(st0*a));
+    var notes = {1:"Fastest. Feed first thing in the morning and the levain is usually ready around midday.", 2:"Bunny’s usual. A steady middle ground.", 6:"Slowest. Feed before bed and sleep in; it’ll be ready when you are."};
+    $("s-ratio-note").textContent = notes[a];
+    document.querySelectorAll(".ratio").forEach(function(b){ var on = parseInt(b.dataset.a,10)===a; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    $("s-div").textContent = S.loaves>1 ? " and divide it into "+S.loaves+" pieces of about "+S.weight+" g" : "";
+    $("minus").disabled = S.loaves<=1;
+    $("plus").disabled = S.loaves>=10;
+    try{ localStorage.setItem("sd-settings", JSON.stringify(S)); }catch(e){}
+  }
+
+  $("weight").value = S.weight; $("hyd").value = S.hyd; $("lev").value = S.lev; $("ww").value = S.ww;
+  $("weight").addEventListener("input", function(){ var v = parseInt(this.value,10); if(v>=100){ S.weight = v; render(); } });
+  $("weight").addEventListener("change", function(){ var v = parseInt(this.value,10); if(!(v>=100)){ v = 100; } S.weight = v; this.value = v; render(); });
+  ["hyd","lev","ww"].forEach(function(k){ $(k).addEventListener("input", function(){ S[k] = parseInt(this.value,10); render(); }); });
+  document.querySelectorAll(".pick").forEach(function(b){ b.addEventListener("click", function(){
+    var k = b.dataset.k, v = parseInt(b.dataset.v,10); S[k] = v; $(k).value = v; render(); }); });
+  document.querySelectorAll(".ratio").forEach(function(b){ b.addEventListener("click", function(){ S.ratio = parseInt(b.dataset.a,10); render(); }); });
+  $("minus").onclick = function(){ if(S.loaves>1){ S.loaves--; render(); } };
+  $("plus").onclick = function(){ if(S.loaves<10){ S.loaves++; render(); } };
+
+  var KEY = "sd-done", done = {};
+  try{ done = JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){ done = {}; }
+  var items = document.querySelectorAll("ol.steps li");
+  items.forEach(function(li){
+    var cb = li.querySelector("input"), id = li.dataset.id;
+    cb.checked = !!done[id]; li.classList.toggle("is-done", cb.checked);
+    cb.addEventListener("change", function(){
+      done[id] = cb.checked; li.classList.toggle("is-done", cb.checked);
+      try{ localStorage.setItem(KEY, JSON.stringify(done)); }catch(e){}
+    });
+  });
+  $("reset").onclick = function(){
+    done = {}; items.forEach(function(li){ li.querySelector("input").checked=false; li.classList.remove("is-done"); });
+    try{ localStorage.removeItem(KEY); }catch(e){}
+  };
+  render();
+})();
+</script>
+</body>
+</html>
