@@ -324,7 +324,7 @@ aside h3:first-of-type{margin-top:0}
   var T = {
     "t-dough": [
       {name:"Whole milk", g:150, note:"Cold"},
-      {name:"Sourdough discard", g:200, note:"100% hydration"},
+      {name:"Sourdough discard", g:200, discard:true},
       {name:"Instant yeast", yeast:true},
       {name:"Sugar", g:60},
       {name:"Egg", egg:1},
@@ -372,6 +372,7 @@ aside h3:first-of-type{margin-top:0}
         else if(i.tbsp && i.perRoll){ amt = "scant "+rolls+" tbsp"; }
         else if(i.tbsp){ amt = quarter(i.tbsp[0]*k)+"–"+quarter(i.tbsp[1]*k)+" tbsp"; }
         else if(i.tsp1){ amt = quarter(i.tsp1*k)+" tsp"; }
+        else if(i.discard){ amt = Math.round(i.g*k)+" g"; note = "100% hydration. No discard? Use "+Math.round(i.g*k/2)+" g flour and "+Math.round(i.g*k/2)+" g water instead"; }
         else if(i.yeast){ amt = quarter(1.5*k)+" tsp"; note = "Sweet-dough yeast, or "+quarter(2*k)+" tsp regular instant yeast"; }
         else amt = Math.round(i.g*k)+" g";
         rows += '<tr'+(i.held?' class="held"':'')+'><td>'+i.name+(note?'<small>'+note+'</small>':'')+'</td><td class="amt">'+amt+'</td></tr>';
